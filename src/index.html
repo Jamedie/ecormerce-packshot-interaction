@@ -5,17 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>One Page E-commerce</title>
     <link rel="stylesheet" href="./styles/style.css" />
-    <script src="./js/index.js"></script>
+    <link rel="stylesheet" href="./styles/packshot.css" />
   </head>
   <body>
-    <div class="packshot">
-      <img
-        src="./assets/images/image.jpg"
-        alt="Product Image"
-        onclick="getClickPosition(event)"
-      />
+    <!-- Packshot template -->
+    <template id="packshot-template">
+      <div class="packshot">
+        <img src="" alt="Product Image" onclick="getClickPosition(event)" />
+        <div id="pastilles-container"></div>
+      </div>
+    </template>
 
-      <div class="pastille-container" style="top: 279px; left: 299px">
+    <!-- Pastille template -->
+    <template id="pastille-template">
+      <div class="pastille-container">
         <div class="pastille">+</div>
         <div class="sub-pastilles">
           <div class="sub-pastille info">ⓘ</div>
@@ -23,6 +26,12 @@
           <div class="sub-pastille cart">🛒</div>
         </div>
       </div>
+    </template>
+
+    <div class="gallery">
+      <div id="packshots-wrapper"></div>
     </div>
+    <!-- Conteneur des packshots générés -->
   </body>
+  <script src="./js/index.js"></script>
 </html>
