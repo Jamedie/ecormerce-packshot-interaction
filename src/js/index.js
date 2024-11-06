@@ -7,74 +7,19 @@ function getClickPosition(event) {
 }
 
 // La totalité d'une ligne doit etre 60
-const packshotsData = [
-  {
-    image: {
-      src: "./assets/images/image1.jpg",
-      ratio: "16/9",
-      alt: "Packshot 1",
-      size: 50,
-      height: 9, // Hauteur sur 4 rangées
-    },
-    pastilles: [{ left: 690, top: 542, price: 599 }],
-  },
-  {
-    image: {
-      src: "./assets/images/image3.jpg",
-      ratio: "9/16",
-      size: 10, // Largeur sur 4 colonnes
-      height: 9, // Hauteur sur 8 rangées
-      alt: "Packshot 3",
-    },
-    pastilles: [{ left: 193, top: 557, price: 50 }],
-  },
-  {
-    image: {
-      src: "./assets/images/image2.jpg",
-      ratio: "16/9",
-      alt: "Packshot 2",
-      size: 60,
-      height: 4, // Hauteur sur 8 rangées
-    },
-    pastilles: [{ left: 1056, top: 685, price: 399 }],
-  },
-  {
-    image: {
-      src: "./assets/images/image4.jpg",
-      ratio: "9/16",
-      alt: "Packshot 4",
-      size: 20,
-      height: 9, // Hauteur sur 8 rangées
-    },
-    pastilles: [{ left: 412, top: 589, price: 399 }],
-  },
-  {
-    image: {
-      src: "./assets/images/image5.jpg",
-      ratio: "16/9",
-      alt: "Packshot 5",
-      size: 40,
-      height: 9, // Hauteur sur 8 rang
-    },
-    pastilles: [
-      { left: 641, top: 405, price: 499 },
-      { left: 269, top: 586, price: 149 },
-    ],
-  },
-  {
-    image: {
-      src: "./assets/images/image6.jpg",
-      ratio: "9/16",
-      alt: "Packshot 6",
-      size: 60,
-      height: 9, // Hauteur sur 8 rangées
-    },
-    pastilles: [
-      { left: 307, top: 190, price: 399 },
-      { left: 307, top: 190, price: 399 },
-    ],
-  },
-];
+// Charger les données depuis le fichier JSON
+fetch("./data/gallery.json")
+  .then((response) => response.json())
+  .then((packshotsData) => {
+    const packshotsWrapper = document.getElementById("packshots-wrapper");
+    packshotsData.forEach((packshotData) => {
+      const packshot = createPackshot(packshotData);
+      packshotsWrapper.appendChild(packshot);
+    });
+  })
+  .catch((error) =>
+    console.error("Erreur lors du chargement des données :", error)
+  );
 
 function createPackshot(packshotData) {
   const template = document.getElementById("packshot-template");
@@ -110,14 +55,87 @@ function createPastille(data) {
   container.style.left = `${data.left}px`;
 
   const price = pastille.querySelector(".sub-pastille.price");
-  price.textContent = `${data.price}€`;
+  if (data.price) {
+    price.textContent = `${data.price}€`;
+  } else {
+    price.remove(); // Pas de prix dans Hero, supprimez l'élément
+  }
+
+  // Action à effectuer au clic
+  container.querySelector(".pastille").addEventListener("click", () => {
+    alert(data.info || "No additional info"); // Affiche l'information associée
+  });
 
   return container;
 }
 
-// Injecter les packshots dans la page
-const packshotsWrapper = document.getElementById("packshots-wrapper");
-packshotsData.forEach((packshotData) => {
-  const packshot = createPackshot(packshotData);
-  packshotsWrapper.appendChild(packshot);
+function scrollToNextSection() {
+  const nextSection = document.querySelector(".gallery");
+  if (nextSection) {
+    nextSection.scrollIntoView({ behavior: "smooth" });
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const heroSection = document.querySelector(".hero");
+  const thumbnails = document.querySelectorAll(".hero-thumbnails img");
+  const pastillesContainer = document.createElement("div");
+  pastillesContainer.classList.add("pastilles-container");
+  heroSection.appendChild(pastillesContainer);
+
+  let heroData = []; // Stocke les données JSON chargées
+  let mainHeroImage = "./assets/images/NouveauxHorizons_Zone03.jpg";
+
+  // Charger les données depuis hero.json
+  fetch("./data/hero.json")
+    .then((response) => response.json())
+    .then((data) => {
+      heroData = data;
+      console.log("heroData après chargement :", heroData); // Déplacez ce console.log ici
+
+      updateHero(mainHeroImage); // Affiche l'image principale avec ses pastilles
+    })
+    .catch((error) =>
+      console.error("Erreur lors du chargement des données :", error)
+    );
+  // Ajouter l'événement au clic sur la Hero Section
+  heroSection.addEventListener("click", getClickPosition);
+
+  // Fonction pour changer l'image principale et créer les pastilles
+  thumbnails.forEach((thumbnail, index) => {
+    thumbnail.addEventListener("click", () => {
+      const clickedThumbnailSrc = thumbnail.src;
+      mainHeroImage = clickedThumbnailSrc;
+
+      updateHero(mainHeroImage); // Met à jour la Hero Section
+    });
+  });
+
+  function updateHero(imageSrc) {
+    heroSection.style.backgroundImage = `url(${imageSrc})`;
+    pastillesContainer.innerHTML = "";
+    const normalizedSrc = imageSrc.replace(location.origin, "."); // Convertit un chemin absolu en relatif
+
+    const currentData = heroData.find((item) => item.image === normalizedSrc);
+
+    if (currentData) {
+      // Mettre à jour le texte descriptif
+      document.getElementById("hero-title").textContent =
+        currentData.title || "No title";
+      document.getElementById("hero-text").textContent =
+        currentData.description || "No description available.";
+      document
+        .getElementById("hero-link")
+        .setAttribute("href", currentData.link || "#");
+
+      if (currentData.pastilles) {
+        currentData.pastilles.forEach((pastilleData) => {
+          const pastille = createPastille(pastilleData);
+          pastillesContainer.appendChild(pastille);
+        });
+      }
+    } else {
+      console.warn("No data found for image:", imageSrc);
+    }
+  }
 });

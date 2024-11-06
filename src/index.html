@@ -4,10 +4,68 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>One Page E-commerce</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/packshot.css" />
+    <link rel="stylesheet" href="./styles/gallery.css" />
+    <link rel="stylesheet" href="./styles/header.css" />
+    <link rel="stylesheet" href="./styles/hero.css" />
   </head>
   <body>
+    <!-- Header Section -->
+    <header class="main-header">
+      <div class="header-content">
+        <div class="header-promo">20% Discount on your first order</div>
+        <nav class="header-nav">
+          <a href="#">Sign up to Newsletter</a>
+          <a href="#" class="btn-buy-now">Buy Now</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1>Nordic Wooden Sofa</h1>
+        <p>
+          Mid-century sofa offers classic elegance with modern durability,
+          perfect for any stylish space.
+        </p>
+        <a href="#" class="btn-shop-now">Shop now</a>
+      </div>
+      <div class="hero-thumbnails">
+        <img
+          src="./assets/images/NouveauxHorizons_Zone03.jpg"
+          alt="Thumbnail 1"
+        />
+        <img
+          src="./assets/images/NouveauxHorizons_Zone04.jpg"
+          alt="Thumbnail 2"
+        />
+        <img
+          src="./assets/images/NouveauxHorizons_Zone05.jpg"
+          alt="Thumbnail 3"
+        />
+      </div>
+      <div class="hero-description">
+        <h3 id="hero-title"></h3>
+        <p id="hero-text"></p>
+        <a href="#" id="hero-link" class="btn-shop-now">Shop now</a>
+      </div>
+
+      <!-- Chevron pour le scroll -->
+      <div class="hero-chevron" onclick="scrollToNextSection()">&#x25BC;</div>
+    </section>
+
+    <!-- Gallery Section -->
+    <div class="gallery">
+      <h2 class="title">Collection</h2>
+      <div id="packshots-wrapper"></div>
+    </div>
+
     <!-- Packshot template -->
     <template id="packshot-template">
       <div class="packshot">
@@ -27,11 +85,6 @@
         </div>
       </div>
     </template>
-
-    <div class="gallery">
-      <div id="packshots-wrapper"></div>
-    </div>
-    <!-- Conteneur des packshots générés -->
   </body>
   <script src="./js/index.js"></script>
 </html>

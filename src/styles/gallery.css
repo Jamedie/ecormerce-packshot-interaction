@@ -1,3 +1,9 @@
+.gallery {
+  gap: 10px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+}
+
 #packshots-wrapper {
   display: grid;
   gap: 10px; /* Espacement entre les éléments */
@@ -32,6 +38,7 @@
 
 /* Style pour la pastille principale */
 .pastille {
+  font-family: sans-serif;
   background-color: #fff;
   transform: translate(0, 70%);
   border-radius: 50%;
@@ -47,6 +54,7 @@
 
 /* Cacher les sous-pastilles par défaut */
 .sub-pastille {
+  font-family: sans-serif;
   position: absolute;
   background-color: #fff;
   border-radius: 50%;
@@ -73,6 +81,11 @@
 /* Positionnement des sous-pastilles par rapport à la pastille principale */
 .sub-pastilles {
   position: relative;
+}
+
+.sub-pastille:hover {
+  /* Applique un rouge transparent  en plus du blanc de base*/
+  background-color: rgb(241, 125, 125);
 }
 
 .sub-pastille.cart {
