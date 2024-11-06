@@ -13,10 +13,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         index: resolve(__dirname, "src/index.html"),
-        errorInitConfigurator: resolve(
-          __dirname,
-          "src/error-init-configurator.html"
-        ),
       },
       output: {
         manualChunks(id) {

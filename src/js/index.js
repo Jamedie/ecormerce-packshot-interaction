@@ -102,7 +102,7 @@ document.addEventListener("DOMContentLoaded", () => {
   heroSection.addEventListener("click", getClickPosition);
 
   // Fonction pour changer l'image principale et créer les pastilles
-  thumbnails.forEach((thumbnail, index) => {
+  thumbnails.forEach((thumbnail) => {
     thumbnail.addEventListener("click", () => {
       const clickedThumbnailSrc = thumbnail.src;
       mainHeroImage = clickedThumbnailSrc;
