@@ -27,44 +27,52 @@ function createPackshot(packshotData) {
 
   const packshotElement = packshot.querySelector(".packshot");
 
-  // Ajuste la largeur et la hauteur dynamiquement
-  packshotElement.style.gridColumnEnd = `span ${packshotData.image.size}`; // Largeur
-  packshotElement.style.gridRowEnd = `span ${packshotData.image.height}`; // Hauteur
+  // Ajuste la largeur et la hauteur dynamiquement pour la grille
+  packshotElement.style.gridColumnEnd = `span ${packshotData.image.size}`;
+  packshotElement.style.gridRowEnd = `span ${packshotData.image.height}`;
 
   const img = packshot.querySelector("img");
   img.src = packshotData.image.src;
   img.alt = packshotData.image.alt;
 
   const pastillesContainer = packshot.querySelector("#pastilles-container");
-  pastillesContainer.id = ""; // Supprimer l'ID pour éviter les conflits
+  pastillesContainer.id = ""; // Supprime l'ID pour éviter les conflits
 
-  packshotData.pastilles.forEach((pastilleData) => {
-    const pastille = createPastille(pastilleData);
-    pastillesContainer.appendChild(pastille);
-  });
+  // Attendez que l'image soit chargée avant de calculer les dimensions
+  img.onload = () => {
+    const imageDimensions = {
+      width: img.naturalWidth, // Utilisez naturalWidth/Height pour des dimensions réelles
+      height: img.naturalHeight,
+    };
 
-  return packshot;
+    packshotData.pastilles.forEach((pastilleData) => {
+      const pastille = createPastille(pastilleData, imageDimensions);
+      pastillesContainer.appendChild(pastille);
+    });
+  };
+
+  return packshot; // Retourne toujours l'élément même si les pastilles arrivent après
 }
 
-function createPastille(data) {
+function createPastille(data, imageDimensions) {
   const template = document.getElementById("pastille-template");
   const pastille = template.content.cloneNode(true);
 
   const container = pastille.querySelector(".pastille-container");
-  container.style.top = `${data.top}px`;
-  container.style.left = `${data.left}px`;
+
+  // Calcul des positions en pourcentage par rapport à l'image
+  const leftPercent = (data.left / imageDimensions.width) * 100;
+  const topPercent = (data.top / imageDimensions.height) * 100;
+
+  container.style.left = `${leftPercent}%`;
+  container.style.top = `${topPercent}%`;
 
   const price = pastille.querySelector(".sub-pastille.price");
   if (data.price) {
     price.textContent = `${data.price}€`;
   } else {
-    price.remove(); // Pas de prix dans Hero, supprimez l'élément
+    price.remove();
   }
-
-  // Action à effectuer au clic
-  container.querySelector(".pastille").addEventListener("click", () => {
-    alert(data.info || "No additional info"); // Affiche l'information associée
-  });
 
   return container;
 }
@@ -128,14 +136,44 @@ document.addEventListener("DOMContentLoaded", () => {
         .getElementById("hero-link")
         .setAttribute("href", currentData.link || "#");
 
-      if (currentData.pastilles) {
-        currentData.pastilles.forEach((pastilleData) => {
-          const pastille = createPastille(pastilleData);
-          pastillesContainer.appendChild(pastille);
-        });
+      const normalizedImageSrc = imageSrc.replace(location.origin, ".");
+
+      if (currentData && currentData.pastilles) {
+        const img = new Image();
+        img.src = normalizedImageSrc;
+
+        img.onload = () => {
+          const imageDimensions = {
+            width: img.naturalWidth,
+            height: img.naturalHeight,
+          };
+
+          currentData.pastilles.forEach((pastilleData) => {
+            const pastille = createPastille(pastilleData, imageDimensions);
+            pastillesContainer.appendChild(pastille);
+          });
+        };
+      } else {
+        console.warn("No pastilles found for this image:", imageSrc);
       }
-    } else {
-      console.warn("No data found for image:", imageSrc);
     }
   }
+
+  window.addEventListener("resize", () => {
+    document.querySelectorAll(".packshot").forEach((packshotElement) => {
+      const img = packshotElement.querySelector("img");
+      const pastilles = packshotElement.querySelectorAll(".pastille-container");
+
+      const imageDimensions = {
+        width: img.clientWidth,
+        height: img.clientHeight,
+      };
+
+      pastilles.forEach((pastille) => {
+        const data = pastille.dataset;
+        pastille.style.left = `${(data.left / imageDimensions.width) * 100}%`;
+        pastille.style.top = `${(data.top / imageDimensions.height) * 100}%`;
+      });
+    });
+  });
 });
