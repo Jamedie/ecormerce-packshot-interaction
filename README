@@ -26,6 +26,7 @@
   │   │   └── Footer.svelte
   │   ├── /routes              # Pages principales et dynamiques
   │   │   ├── index.svelte     # Page d'accueil (Hero + Gallery)
+  │   │   ├── 404.svelte       # Page d'erreur 404
   │   │   ├── products
   │   │   │   ├── [id].svelte  # Pages produit dynamiques
   │   │   │   └── ProductList.svelte # Liste des produits
@@ -35,6 +36,7 @@
   │   │   └── hero.json
   │   ├── main.js              # Point d'entrée
   ├── /public                  # Fichiers accessibles directement
+  ├── App.svelte               # 
   ├── vite.config.js           # Configuration Vite
   └── package.json             # Dépendances et scripts
 ```

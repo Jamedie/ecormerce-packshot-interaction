@@ -9,6 +9,7 @@ export default defineConfig({
     alias: {
       $routes: path.resolve(__dirname, "./src/routes"),
       $components: path.resolve(__dirname, "./src/components"),
+      $data: path.resolve(__dirname, "./src/data"), // Assurez-vous que le chemin est correct
     },
   },
   root: "./src",
