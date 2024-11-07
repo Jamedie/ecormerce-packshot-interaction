@@ -8,6 +8,8 @@
   let currentHero = {};
   let chips = [];
   let imageDimensions = { width: 0, height: 0 };
+  let isTransitioning = false;
+  let isInitialized = false;
 
   async function fetchHeroData() {
     try {
@@ -15,16 +17,27 @@
       if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
       heroData = await res.json();
       mainHeroImage = heroData[0]?.image || "../assets/images/image1.jpg";
-      updateHero(mainHeroImage);
+      currentHero = heroData.find((item) => item.image === mainHeroImage) || {};
+      chips = currentHero.chips || [];
+      setTimeout(() => {
+        isInitialized = true;
+      }, 100);
     } catch (err) {
       console.error("Erreur de chargement Hero:", err);
     }
   }
 
   function updateHero(imageSrc) {
-    mainHeroImage = imageSrc;
-    currentHero = heroData.find((item) => item.image === imageSrc) || {};
-    chips = currentHero.chips || [];
+    if (imageSrc === mainHeroImage) return;
+    isTransitioning = true; // Déclenche la transition
+    setTimeout(() => {
+      mainHeroImage = imageSrc;
+      currentHero = heroData.find((item) => item.image === imageSrc) || {};
+      chips = currentHero.chips || [];
+    }, 200);
+    setTimeout(() => {
+      isTransitioning = false;
+    }, 600);
   }
 
   function onImageLoad(event) {
@@ -35,12 +48,21 @@
     };
   }
   onMount(() => {
+    // Désactive la restauration du scroll et remonte en haut de la page
+    if ("scrollRestoration" in history) {
+      history.scrollRestoration = "manual";
+    }
+
+    window.addEventListener("load", () => {
+      window.scrollTo(0, 0);
+    });
+
     fetchHeroData();
   });
 </script>
 
 <section class="hero" style="background-image: url({mainHeroImage})">
-  <!-- Image cachée pour charger et obtenir les dimensions -->
+  <source srcset={mainHeroImage} type="image/webp" />
   <img
     src={mainHeroImage}
     alt="Main Hero"
@@ -56,36 +78,39 @@
     <a href="#" class="btn-shop-now">Shop now</a>
   </div>
 
-  <!--  Gestion des chips -->
-  <div class="chips-container">
-    {#each chips as chip}
-      <Chip
-        left={chip.left}
-        top={chip.top}
-        {imageDimensions}
-        price={chip.price}
-        onClick={() => console.log(`Chip cliquée : ${chip.price}€`)} />
-    {/each}
-  </div>
+  {#if isInitialized}
+    <!--  Gestion des chips -->
+    <div class="chips-container {isTransitioning ? 'fade-content' : ''}">
+      {#each chips as chip}
+        <Chip
+          left={chip.left}
+          top={chip.top}
+          {imageDimensions}
+          price={chip.price}
+          onClick={() => console.log(`Chip cliquée : ${chip.price}€`)} />
+      {/each}
+    </div>
 
-  <div class="hero-thumbnails">
-    {#each heroData as hero}
-      <button
-        type="button"
-        on:click={() => updateHero(hero.image)}
-        on:keydown={(e) => e.key === "Enter" && updateHero(hero.image)}
-        class="thumbnail-button {hero.image === mainHeroImage ? 'active' : ''}">
-        <img src={hero.image} alt={`Thumbnail for ${hero.title}`} />
-      </button>
-    {/each}
-  </div>
+    <div class="hero-thumbnails">
+      {#each heroData as hero}
+        <button
+          type="button"
+          on:click={() => updateHero(hero.image)}
+          on:keydown={(e) => e.key === "Enter" && updateHero(hero.image)}
+          class="thumbnail-button {hero.image === mainHeroImage
+            ? 'active'
+            : ''}">
+          <img src={hero.image} alt={`Thumbnail for ${hero.title}`} />
+        </button>
+      {/each}
+    </div>
 
-  <div class="hero-description">
-    <h3>{currentHero.title || "Titre manquant"}</h3>
-    <p>{currentHero.description || "Description manquante"}</p>
-    <a href={currentHero.link || "#"} class="btn-shop-now">Shop now</a>
-  </div>
-
+    <div class="hero-description {isTransitioning ? 'fade-content' : ''}">
+      <h3>{currentHero.title || "Titre manquant"}</h3>
+      <p>{currentHero.description || "Description manquante"}</p>
+      <a href={currentHero.link || "#"} class="btn-shop-now">Shop now</a>
+    </div>
+  {/if}
   <!-- Chevron pour le scroll -->
   <div class="hero-chevron" id="scroll-chevron">&#x25BC;</div>
 </section>
@@ -105,6 +130,7 @@
     text-align: center;
     padding-top: 180px;
     position: relative;
+    transition: background-image 0.6s ease-in-out;
   }
 
   .hero-content h1 {
@@ -239,5 +265,31 @@
     60% {
       transform: translateX(-50%) translateY(-5px);
     }
+  }
+
+  .chips-container,
+  .hero-description {
+    opacity: 0;
+    visibility: hidden; /* Masque complètement avant initialisation */
+  }
+
+  .chips-container.fade-content,
+  .hero-description.fade-content {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+  }
+
+  .chips-container:not(.fade-content),
+  .hero-description:not(.fade-content) {
+    opacity: 1;
+    visibility: visible; /* Affiche après transition */
+    transform: translateY(0);
+    transition:
+      opacity 0.6s ease-in-out,
+      transform 0.6s ease-in-out;
+  }
+  button:focus-visible {
+    outline: 2px solid #007bff;
   }
 </style>
