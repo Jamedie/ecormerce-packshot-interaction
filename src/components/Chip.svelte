@@ -49,6 +49,7 @@
 
   .chip {
     font-family: sans-serif;
+    font-size: 24px;
     background-color: #ffffff;
     border-radius: 50%;
     width: 30px;
@@ -108,7 +109,7 @@
   }
 
   .sub-chip.info {
-    top: -10px;
+    top: 70px;
     left: 5px;
   }
 
@@ -118,7 +119,7 @@
   }
 
   .sub-chip.cart {
-    top: 70px;
+    top: -10px;
     left: 5px;
   }
 

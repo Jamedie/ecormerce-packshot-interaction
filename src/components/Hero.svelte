@@ -199,7 +199,7 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     max-width: 300px;
-    min-height: 400px;
+    min-height: 300px;
     text-align: left;
     /* Ajout d'un espacement entre les textes */
     line-height: 1.5;
