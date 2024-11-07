@@ -57,7 +57,7 @@
       </div>
 
       <!-- Chevron pour le scroll -->
-      <div class="hero-chevron" onclick="scrollToNextSection()">&#x25BC;</div>
+      <div class="hero-chevron" id="scroll-chevron">&#x25BC;</div>
     </section>
 
     <!-- Gallery Section -->
@@ -69,7 +69,7 @@
     <!-- Packshot template -->
     <template id="packshot-template">
       <div class="packshot">
-        <img src="" alt="Product Image" onclick="getClickPosition(event)" />
+        <img src="" alt="Product Image" />
         <div id="pastilles-container"></div>
       </div>
     </template>
@@ -86,5 +86,5 @@
       </div>
     </template>
   </body>
-  <script src="./js/index.js"></script>
+  <script type="module" src="./js/index.js"></script>
 </html>
