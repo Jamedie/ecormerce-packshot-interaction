@@ -1,0 +1,40 @@
+2. Description des Répertoires
+   /src/components
+   Hero.svelte : Section Hero avec titre, description, chevron et miniatures.
+   Gallery.svelte : Affiche la galerie des packshots.
+   ProductCard.svelte : Carte de produit réutilisable dans des listes.
+   ModelViewer.svelte : Visionneuse 3D pour afficher les modèles.
+   Pastille.svelte : Composant pour gérer les pastilles interactives sur les images.
+   Footer.svelte : Pied de page.
+   /src/routes
+   index.svelte : Page d’accueil combinant Hero et Gallery.
+   products/[id].svelte : Génère dynamiquement une page produit en fonction de l’ID.
+   products/ProductList.svelte : Liste des produits avec des liens vers chaque page produit.
+   /src/data
+   gallery.json : Données pour les images de la galerie.
+   hero.json : Données spécifiques au Hero (titre, description, pastilles).
+
+```
+/project-root
+  ├── /src
+  │   ├── /components          # Composants réutilisables
+  │   │   ├── Hero.svelte
+  │   │   ├── Gallery.svelte
+  │   │   ├── ProductCard.svelte
+  │   │   ├── ModelViewer.svelte
+  │   │   ├── Pastille.svelte
+  │   │   └── Footer.svelte
+  │   ├── /routes              # Pages principales et dynamiques
+  │   │   ├── index.svelte     # Page d'accueil (Hero + Gallery)
+  │   │   ├── products
+  │   │   │   ├── [id].svelte  # Pages produit dynamiques
+  │   │   │   └── ProductList.svelte # Liste des produits
+  │   ├── /assets              # Images, polices, etc.
+  │   ├── /data                # Fichiers JSON pour les données
+  │   │   ├── gallery.json
+  │   │   └── hero.json
+  │   ├── main.js              # Point d'entrée
+  ├── /public                  # Fichiers accessibles directement
+  ├── vite.config.js           # Configuration Vite
+  └── package.json             # Dépendances et scripts
+```

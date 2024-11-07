@@ -3,88 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>One Page E-commerce</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600&display=swap"
-      rel="stylesheet"
-    />
-
-    <link rel="stylesheet" href="./styles/style.css" />
-    <link rel="stylesheet" href="./styles/gallery.css" />
-    <link rel="stylesheet" href="./styles/header.css" />
-    <link rel="stylesheet" href="./styles/hero.css" />
+    <title>Svelte 5 App</title>
   </head>
   <body>
-    <!-- Header Section -->
-    <header class="main-header">
-      <div class="header-content">
-        <div class="header-promo">20% Discount on your first order</div>
-        <nav class="header-nav">
-          <a href="#">Sign up to Newsletter</a>
-          <a href="#" class="btn-buy-now">Buy Now</a>
-        </nav>
-      </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="hero">
-      <div class="hero-content">
-        <h1>InnovAItion Outdoor</h1>
-        <p>
-          L'excellence de l'intelligence artificielle au service de vos moments
-          en plein air.
-        </p>
-        <a href="#" class="btn-shop-now">Shop now</a>
-      </div>
-      <div class="hero-thumbnails">
-        <img
-          src="./assets/images/NouveauxHorizons_Zone03.jpg"
-          alt="Thumbnail 1"
-        />
-        <img
-          src="./assets/images/NouveauxHorizons_Zone04.jpg"
-          alt="Thumbnail 2"
-        />
-        <img
-          src="./assets/images/NouveauxHorizons_Zone05.jpg"
-          alt="Thumbnail 3"
-        />
-      </div>
-      <div class="hero-description">
-        <h3 id="hero-title"></h3>
-        <p id="hero-text"></p>
-        <a href="#" id="hero-link" class="btn-shop-now">Shop now</a>
-      </div>
-
-      <!-- Chevron pour le scroll -->
-      <div class="hero-chevron" id="scroll-chevron">&#x25BC;</div>
-    </section>
-
-    <!-- Gallery Section -->
-    <div class="gallery">
-      <h2 class="title">Collection</h2>
-      <div id="packshots-wrapper"></div>
-    </div>
-
-    <!-- Packshot template -->
-    <template id="packshot-template">
-      <div class="packshot">
-        <img src="" alt="Product Image" />
-        <div id="pastilles-container"></div>
-      </div>
-    </template>
-
-    <!-- Pastille template -->
-    <template id="pastille-template">
-      <div class="pastille-container">
-        <div class="pastille">+</div>
-        <div class="sub-pastilles">
-          <div class="sub-pastille info">ⓘ</div>
-          <div class="sub-pastille price">$599</div>
-          <div class="sub-pastille cart">🛒</div>
-        </div>
-      </div>
-    </template>
+    <div id="app"></div>
+    <!-- La cible pour le composant monté -->
+    <script type="module" src="/main.js"></script>
   </body>
-  <script type="module" src="./js/index.js"></script>
 </html>
