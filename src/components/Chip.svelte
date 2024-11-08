@@ -10,13 +10,15 @@
 </script>
 
 <div class="chip-container" style="left: {leftPercent}%; top: {topPercent}%;">
-  <button class="chip" aria-label="Main Chip"> + </button>
+  <button class="chip" aria-label="Main Chip">
+    <img src="../assets/icons/plus-icon.svg" alt="Ajouter au panier" />
+  </button>
   <div class="sub-chips">
     <button
       class="sub-chip cart"
       on:click={() => (window.location.href = `/products/${productId}`)}
       aria-label="Add to Cart">
-      🛒
+      <img src="../assets/icons/cart-icon.svg" alt="Ajouter au panier" />
     </button>
     {#if price}
       <button
@@ -30,7 +32,7 @@
       class="sub-chip info"
       on:click={() => (window.location.href = `/products/${productId}`)}
       aria-label="More Info">
-      ⓘ
+      <img src="../assets/icons/info-icon.svg" alt="Plus d'infos" />
     </button>
   </div>
 </div>

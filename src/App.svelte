@@ -21,7 +21,7 @@
     return NotFound;
   };
 
-  const navigate = (path) => {
+  export const navigate = (path) => {
     currentComponent = getRoute(path);
     history.pushState({}, "", path);
   };
@@ -37,9 +37,3 @@
 
 <!-- Affichage de la route courante -->
 <svelte:component this={currentComponent} />
-
-<!-- Simple lien de test -->
-<button on:click={() => navigate("/")}>Accueil</button><button
-  on:click={() => navigate("/products")}>Voir la liste des produits</button>
-<button on:click={() => navigate("/products/101")}>Produit 1</button>
-<button on:click={() => navigate("/404")}>404</button>

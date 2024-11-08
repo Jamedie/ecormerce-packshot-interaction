@@ -24,6 +24,7 @@
 <style>
   .main-header {
     position: fixed;
+    height: var(--header-height);
     width: 100%;
     z-index: 1000;
     background-color: #000;
@@ -32,6 +33,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    top: 0;
   }
 
   .header-content {

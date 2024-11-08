@@ -1,32 +1,69 @@
 [
   {
     "id": 101,
-    "title": "Lounge Chair",
-    "description": "Découvrez le confort ultime avec notre Lounge Chair.",
-    "features": [
-      "Matériau : Bois de hêtre",
-      "Tissu : Coton premium",
-      "Couleur : Beige naturel"
-    ],
+    "title": "Fauteuil, circa 1950",
+    "shortDescription": "Sophisticated and durable, this nordic sofa is crafted for both comfort and style.",
+    "longDescription": "Transform your living space with this luxurious mid-century modern sofa. Crafted with sleek lines, tapered wooden legs, and soft, stain-resistant upholstery, this sofa combines classic elegance with modern comfort. Its deep-seated cushions and plush backrest make it the perfect spot to unwind, entertain, or curl up with a book. Available in multiple colors to suit any decor style.",
+    "price": 350,
+    "deliveryTime": "3 Days",
+    "pickupTime": "Today",
+    "image": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fanonyme-fauteuil.jpg?alt=media",
     "dimensions": {
-      "width": "80 cm",
-      "height": "100 cm",
-      "depth": "85 cm"
+      "width": 90,
+      "height": 77,
+      "depth": 120
     },
-    "availability": "En stock",
-    "price": 599
+    "features": [
+      "Luxury Leather",
+      "Ergonomic Design",
+      "Stain-resistant Upholstery",
+      "Tapered Wooden Legs",
+      "Deep-Seated Cushions"
+    ]
   },
   {
     "id": 102,
-    "title": "Table Minimaliste",
-    "description": "Une table au design minimaliste, parfaite pour les intérieurs modernes.",
-    "features": ["Matériau : Aluminium", "Finition : Mat", "Couleur : Noir"],
+    "title": "Table basse de salon de jardin en corde tressée",
+    "shortDescription": "Corde tressée résistante aux intempéries, avec structure légère en aluminium anticorrosion, idéale pour le mobilier de jardin.",
+    "longDescription": "La corde tressée est un matériau de plus en plus utilisé pour la confection de mobilier de salon de jardin.Matière très résistante elle est parfaitement adaptée aux conditions climatiques extrêmes (humidité, grêle, pluie, fortes chaleurs..). La corde est une matière qui ne s’étire pas et qui a un toucher agréable.Au même titre que la résine tressée (ou poly rotin), le tressage de la corde vous rappellera visuellement du mobilier en matière naturelle comme le rotin notamment.Pour vous garantir une parfaite résistance aux intempéries, cette table basse ronde de salon de jardin a une structure en aluminium blanc. Très léger ce matériau est également garanti anticorrosion.",
+    "price": 594,
+    "deliveryTime": "3 Days",
+    "pickupTime": "Today",
+    "image": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Ftable-basse-corde-tressee-diametre-50.jpg?alt=media",
     "dimensions": {
-      "width": "120 cm",
-      "height": "75 cm",
-      "depth": "60 cm"
+      "width": 80,
+      "height": 90,
+      "depth": 75
     },
-    "availability": "Précommande",
-    "price": 999
+    "features": [
+      "Luxury Leather",
+      "Ergonomic Design",
+      "Stain-resistant Upholstery",
+      "Tapered Wooden Legs",
+      "Deep-Seated Cushions"
+    ]
+  },
+  {
+    "id": 103,
+    "title": "Premium Leather Armchair",
+    "shortDescription": "Sophisticated and durable, this nordic sofa is crafted for both comfort and style.",
+    "longDescription": "Transform your living space with this luxurious mid-century modern sofa. Crafted with sleek lines, tapered wooden legs, and soft, stain-resistant upholstery, this sofa combines classic elegance with modern comfort. Its deep-seated cushions and plush backrest make it the perfect spot to unwind, entertain, or curl up with a book. Available in multiple colors to suit any decor style.",
+    "price": 599,
+    "oldPrice": 756,
+    "deliveryTime": "3 Days",
+    "pickupTime": "Today",
+    "image": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FTeak_outdoor_lounge_salon_clubzetel.png?alt=media",
+    "dimensions": {
+      "width": 80,
+      "height": 90,
+      "depth": 75
+    },
+    "features": [
+      "Luxury Leather",
+      "Ergonomic Design",
+      "Stain-resistant Upholstery",
+      "Tapered Wooden Legs",
+      "Deep-Seated Cushions"
+    ]
   }
 ]

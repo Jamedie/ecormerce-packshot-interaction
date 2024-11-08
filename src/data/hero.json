@@ -6,8 +6,8 @@
     "link": "#",
     "chips": [
       { "left": 790, "top": 572, "price": 80, "productId": "101" },
-      { "left": 1045, "top": 628, "price": 65, "productId": "101" },
-      { "left": 1306, "top": 573, "price": 90, "productId": "101" }
+      { "left": 1045, "top": 628, "price": 65, "productId": "102" },
+      { "left": 1306, "top": 573, "price": 90, "productId": "103" }
     ]
   },
   {
