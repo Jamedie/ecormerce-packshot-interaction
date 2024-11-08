@@ -1,24 +1,46 @@
 <script>
   import { onMount } from "svelte";
-  import Packshot from "$components/Packshot.svelte";
-  import data from "$data/gallery.json";
+  import Chip from "./Chip.svelte";
 
-  let packshots = [];
+  let galleryData = [];
 
-  onMount(() => {
-    packshots = data;
+  onMount(async () => {
+    const res = await fetch("/data/gallery.json");
+    galleryData = await res.json();
   });
+
+  function handleChipClick(productId) {
+    window.location.href = `/product/${productId}`;
+  }
 </script>
 
-<section class="gallery">
-  <h2 class="title">Collection</h2>
-  <div id="packshots-wrapper">
-    {#each packshots as packshot}
-      <Packshot {packshot} />
-    {/each}
-  </div>
-</section>
+<div class="gallery">
+  {#each galleryData as item}
+    <div class="gallery-item">
+      <img src={item.image.src} alt={item.image.alt} />
+      <div class="chips-container">
+        {#each item.chips as chip}
+          <Chip
+            left={chip.left}
+            top={chip.top}
+            price={chip.price}
+            productId={chip.productId}
+            onClick={() => handleChipClick(productId)} />
+        {/each}
+      </div>
+    </div>
+  {/each}
+</div>
 
 <style>
-  /* Copie ton CSS de la galerie ici */
+  .gallery-item {
+    position: relative;
+  }
+  .chips-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
 </style>

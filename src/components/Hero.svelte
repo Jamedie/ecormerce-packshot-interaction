@@ -87,7 +87,7 @@
           top={chip.top}
           {imageDimensions}
           price={chip.price}
-          onClick={() => console.log(`Chip cliquée : ${chip.price}€`)} />
+          productId={chip.productId} />
       {/each}
     </div>
 

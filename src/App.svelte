@@ -41,5 +41,5 @@
 <!-- Simple lien de test -->
 <button on:click={() => navigate("/")}>Accueil</button><button
   on:click={() => navigate("/products")}>Voir la liste des produits</button>
-<button on:click={() => navigate("/products/1")}>Produit 1</button>
+<button on:click={() => navigate("/products/101")}>Produit 1</button>
 <button on:click={() => navigate("/404")}>404</button>

@@ -7,7 +7,7 @@
       "size": 50,
       "height": 9
     },
-    "pastilles": [{ "left": 690, "top": 542, "price": 599 }]
+    "pastilles": [{ "left": 690, "top": 542, "price": 599, "productId": 101 }]
   },
   {
     "image": {
@@ -17,7 +17,7 @@
       "height": 9,
       "alt": "Packshot 3"
     },
-    "pastilles": [{ "left": 193, "top": 557, "price": 50 }]
+    "pastilles": [{ "left": 193, "top": 557, "price": 50, "productId": 102 }]
   },
   {
     "image": {
@@ -27,7 +27,7 @@
       "size": 60,
       "height": 4
     },
-    "pastilles": [{ "left": 1056, "top": 685, "price": 399 }]
+    "pastilles": [{ "left": 1056, "top": 685, "price": 399, "productId": 103 }]
   },
   {
     "image": {
@@ -37,7 +37,7 @@
       "size": 20,
       "height": 9
     },
-    "pastilles": [{ "left": 412, "top": 589, "price": 399 }]
+    "pastilles": [{ "left": 412, "top": 589, "price": 399, "productId": 104 }]
   },
   {
     "image": {
@@ -48,8 +48,8 @@
       "height": 9
     },
     "pastilles": [
-      { "left": 641, "top": 405, "price": 499 },
-      { "left": 269, "top": 586, "price": 149 }
+      { "left": 641, "top": 405, "price": 499, "productId": 105 },
+      { "left": 269, "top": 586, "price": 149, "productId": 106 }
     ]
   }
 ]

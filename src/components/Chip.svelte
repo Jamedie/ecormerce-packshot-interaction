@@ -3,24 +3,18 @@
   export let top = 0;
   export let imageDimensions = { width: 1, height: 1 };
   export let price = null;
-  export let onClick = () => {};
+  export let productId = null;
 
   $: leftPercent = (left / imageDimensions.width) * 100;
   $: topPercent = (top / imageDimensions.height) * 100;
 </script>
 
 <div class="chip-container" style="left: {leftPercent}%; top: {topPercent}%;">
-  <button
-    class="chip"
-    on:click={onClick}
-    on:keydown={(e) => e.key === "Enter" && onClick()}
-    aria-label="Main Chip">
-    +
-  </button>
+  <button class="chip" aria-label="Main Chip"> + </button>
   <div class="sub-chips">
     <button
       class="sub-chip cart"
-      on:click={() => console.log("Cart clicked")}
+      on:click={() => (window.location.href = `/products/${productId}`)}
       aria-label="Add to Cart">
       🛒
     </button>
@@ -34,8 +28,8 @@
     {/if}
     <button
       class="sub-chip info"
-      on:click={() => console.log("Info clicked")}
-      aria-label="Info">
+      on:click={() => (window.location.href = `/products/${productId}`)}
+      aria-label="More Info">
       ⓘ
     </button>
   </div>
@@ -98,7 +92,7 @@
     transition:
       opacity 0.3s,
       transform 0.3s ease;
-    pointer-events: all; /* Rend cliquable uniquement lorsqu'apparent */
+    pointer-events: all;
     border: none;
     outline: none;
   }

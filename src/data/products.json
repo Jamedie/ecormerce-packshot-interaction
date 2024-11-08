@@ -1,0 +1,32 @@
+[
+  {
+    "id": 101,
+    "title": "Lounge Chair",
+    "description": "Découvrez le confort ultime avec notre Lounge Chair.",
+    "features": [
+      "Matériau : Bois de hêtre",
+      "Tissu : Coton premium",
+      "Couleur : Beige naturel"
+    ],
+    "dimensions": {
+      "width": "80 cm",
+      "height": "100 cm",
+      "depth": "85 cm"
+    },
+    "availability": "En stock",
+    "price": 599
+  },
+  {
+    "id": 102,
+    "title": "Table Minimaliste",
+    "description": "Une table au design minimaliste, parfaite pour les intérieurs modernes.",
+    "features": ["Matériau : Aluminium", "Finition : Mat", "Couleur : Noir"],
+    "dimensions": {
+      "width": "120 cm",
+      "height": "75 cm",
+      "depth": "60 cm"
+    },
+    "availability": "Précommande",
+    "price": 999
+  }
+]
