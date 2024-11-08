@@ -1,22 +1,17 @@
 <script>
   import { onMount } from "svelte";
-  import Header from "$components/Header.svelte";
-  import Footer from "$components/Footer.svelte";
-
   let id;
   let productData = {};
   let loading = true;
-  let activeTab = "Description"; // Onglet par défaut
+  let activeTab = "Details"; // Onglet par défaut
 
   onMount(async () => {
     loading = true;
     try {
       const urlParts = window.location.pathname.split("/");
       id = urlParts[urlParts.length - 1];
-
       const res = await fetch("/data/products.json");
       if (!res.ok) throw new Error("Erreur lors du chargement des données");
-
       const products = await res.json();
       productData = products.find((product) => product.id === +id);
     } catch (error) {
@@ -30,261 +25,177 @@
   }
 </script>
 
-<Header />
-<section class="product-page">
-  {#if loading}
-    <div class="loading-container">
-      <div class="loading-content">
-        <img src="../assets/icons/loading-icon.svg" alt="Chargement..." />
-        <p>Chargement...</p>
-      </div>
+{#if loading}
+  <div class="loading-container">
+    <div class="loading-content">
+      <img src="../assets/icons/loading-icon.svg" alt="Chargement..." />
+      <p>Chargement...</p>
     </div>
-  {:else}
-    <div class="product-content">
-      <!-- Image Produit -->
-      <div class="product-image">
-        <img src={productData.image} alt={productData.title} />
-      </div>
-
-      <!-- Informations Produit -->
-      <div class="product-info">
-        <h1>{productData.title}</h1>
-        <p class="short-description">{productData.shortDescription}</p>
-        <div class="pricing">
-          <span class="current-price">{productData.price}€</span>
-          {#if productData.oldPrice}
-            <span class="old-price">{productData.oldPrice}€</span>
-          {/if}
-        </div>
-        <button class="btn-buy">Buy now</button>
-        <div class="delivery-info">
-          <p>🚚 Expected Delivery: {productData.deliveryTime}</p>
-          <p>🏠 Store pick-up: {productData.pickupTime}</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Onglets Produit -->
-    <div class="tabs">
-      <button
-        on:click={() => changeTab("Description")}
-        class={activeTab === "Description" ? "active" : ""}>
-        Description
-      </button>
-      <button
-        on:click={() => changeTab("Dimensions")}
-        class={activeTab === "Dimensions" ? "active" : ""}>
-        Dimensions
-      </button>
-      <button
-        on:click={() => changeTab("Features")}
-        class={activeTab === "Features" ? "active" : ""}>
-        Features
-      </button>
-    </div>
-
-    <!-- Contenu des Onglets -->
-    <div class="tab-content">
-      {#if activeTab === "Description"}
-        <p>{productData.longDescription}</p>
-      {:else if activeTab === "Dimensions"}
-        <ul class="dimension-table">
-          <li><span>Width:</span> {productData.dimensions.width} cm</li>
-          <li><span>Height:</span> {productData.dimensions.height} cm</li>
-          <li><span>Depth:</span> {productData.dimensions.depth} cm</li>
-        </ul>
-      {:else if activeTab === "Features"}
-        <ul>
-          {#each productData.features as feature}
-            <li>{feature}</li>
-          {/each}
-        </ul>
+  </div>
+{:else}
+  <div class="product-page">
+    <!-- Images -->
+    <div class="product-images">
+      {#if productData.modelUrl}
+        <!-- Model Viewer si un modèle 3D est disponible -->
+        <model-viewer
+          src={productData.modelUrl}
+          alt={productData.title}
+          ar
+          camera-controls
+          auto-rotate></model-viewer>
+      {:else}
+        <!-- Image principale -->
+        <img
+          src={productData.mainImage}
+          alt={productData.title}
+          class="main-image" />
       {/if}
+      <!-- Autres images -->
+      <div class="thumbnail-images">
+        {#each productData.images as image}
+          <img src={image} alt={productData.title} class="thumbnail" />
+        {/each}
+      </div>
     </div>
-  {/if}
-</section>
-<Footer />
+
+    <!-- Informations Produit -->
+    <div class="product-info">
+      <h1>{productData.title}</h1>
+      <div class="rating">★ ★ ★ ★ ★ ({productData.reviews} reviews)</div>
+      <div class="pricing">
+        <span class="current-price">{productData.price} €</span>
+        {#if productData.oldPrice}
+          <span class="old-price">{productData.oldPrice} €</span>
+        {/if}
+      </div>
+      <button class="btn-buy">Add to cart</button>
+      <div class="color-options">
+        {#each productData.colors as color}
+          <span class="color-dot" style="background-color: {color}"></span>
+        {/each}
+      </div>
+      <div class="delivery-info">
+        <p>🚚 Expected Delivery: {productData.deliveryTime}</p>
+        <p>🏠 Store pick-up: {productData.pickupTime}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs Produit -->
+  <div class="tabs">
+    <button
+      on:click={() => changeTab("Details")}
+      class={activeTab === "Details" ? "active" : ""}>Details</button>
+    <button
+      on:click={() => changeTab("Delivery")}
+      class={activeTab === "Delivery" ? "active" : ""}>Delivery</button>
+  </div>
+
+  <!-- Contenu des Onglets -->
+  <div class="tab-content">
+    {#if activeTab === "Details"}
+      <p>{productData.longDescription}</p>
+    {:else if activeTab === "Delivery"}
+      <p>Delivery details and terms go here.</p>
+    {/if}
+  </div>
+{/if}
 
 <style>
   .product-page {
-    width: 100%;
-    height: calc((100vh - (calc(var(--header-height) + var(--footer-height)))));
-    margin-top: var(--header-height);
     display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    color: #000000;
-    position: relative;
-    transition: background-image 0.6s ease-in-out;
-    overflow: hidden;
-  }
-
-  .loading-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f9f9f9;
-  }
-
-  .loading-content {
-    text-align: center;
-    color: #555;
-  }
-
-  .loading-content img {
-    width: 60px;
-    height: 60px;
-    animation: spin 1.5s linear infinite;
-  }
-
-  .loading-content p {
-    margin-top: 10px;
-    font-size: 18px;
-    font-weight: 500;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-
-  .product-content {
-    display: flex;
-    gap: 2rem;
-    padding: 20px;
-    max-width: 1000px;
+    gap: 30px;
+    max-width: 1200px;
     margin: auto;
+    padding: 40px 20px;
   }
-
-  .product-image img {
+  .product-images {
+    flex: 1;
+  }
+  .main-image,
+  model-viewer {
     width: 100%;
-    max-width: 400px;
+    max-width: 600px;
     border-radius: 8px;
   }
-
+  .thumbnail-images {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .thumbnail {
+    width: 80px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
   .product-info {
-    text-align: left;
-    max-width: 400px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
   }
-
-  .short-description {
-    margin-bottom: 10px;
-    font-size: 16px;
+  .product-info h1 {
+    font-size: 28px;
+    font-weight: bold;
   }
-
+  .rating {
+    margin: 10px 0;
+    color: #f39c12;
+  }
   .pricing {
     display: flex;
     gap: 10px;
-    margin-bottom: 15px;
+    font-size: 22px;
   }
-
   .current-price {
-    font-size: 24px;
     font-weight: bold;
-    color: #007bff;
+    color: #3498db;
   }
-
   .old-price {
-    font-size: 18px;
-    color: #aaa;
+    color: #999;
     text-decoration: line-through;
   }
-
   .btn-buy {
-    background-color: #007bff;
-    color: white;
+    margin-top: 15px;
+    background-color: #3498db;
+    color: #fff;
     padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
-    margin-bottom: 20px;
   }
-
-  .btn-buy:hover {
-    background-color: #0056b3;
+  .color-options {
+    display: flex;
+    gap: 5px;
+    margin: 15px 0;
   }
-
-  .delivery-info p {
-    margin: 5px 0;
+  .color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
   }
-
   .tabs {
     display: flex;
-    gap: 10px;
-    margin: 20px 0;
     justify-content: center;
+    gap: 20px;
+    margin: 30px 0;
   }
-
   .tabs button {
     padding: 10px;
-    background-color: transparent;
-    border: 1px solid #ccc;
-    color: #ddd;
-    cursor: pointer;
     font-size: 16px;
     font-weight: bold;
-    border-radius: 20px;
-    transition: background-color 0.3s ease;
+    cursor: pointer;
   }
-
   .tabs button.active {
-    background-color: #007bff;
-    color: white;
-    border: none;
+    border-bottom: 2px solid #3498db;
   }
-
   .tab-content {
-    max-width: 500px;
-    height: 50%;
-    padding: 20px;
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .dimension-table {
-    min-width: 250px;
+    max-width: 600px;
+    margin: auto;
     padding: 20px;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    list-style: none;
-    margin: 0;
-    text-align: left;
-  }
-
-  .dimension-table li {
-    padding: 10px 0;
-    display: flex;
-    justify-content: space-between;
-    font-size: 16px;
-    border-bottom: 1px solid #eee;
-  }
-
-  .dimension-table li:last-child {
-    border-bottom: none;
-  }
-
-  .dimension-table span {
-    font-weight: bold;
-    color: #007bff;
-  }
-
-  @media (max-width: 768px) {
-    .product-page {
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .tabs button {
-      font-size: 14px;
-    }
   }
 </style>
