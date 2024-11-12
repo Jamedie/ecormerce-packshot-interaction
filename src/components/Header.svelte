@@ -35,6 +35,7 @@
   }
 
   .header-content {
+    padding: var(--space-xl);
     width: 100%;
     display: flex;
     justify-content: space-between;
