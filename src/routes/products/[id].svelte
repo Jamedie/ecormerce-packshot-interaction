@@ -21,10 +21,6 @@
     }
     loading = false;
   });
-
-  function changeTab(tab) {
-    activeTab = tab;
-  }
 </script>
 
 <main>
@@ -84,7 +80,7 @@
         <button class="btn-add-to-cart">Ajouter au panier</button>
 
         <div class="product-meta">
-          <p><strong>Dimensions</strong></p>
+          <h3>Dimensions</h3>
           <p>
             {productData.dimensions.width} x {productData.dimensions.height} x
             {productData.dimensions.depth} cm
