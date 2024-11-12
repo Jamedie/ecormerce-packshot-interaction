@@ -27,8 +27,6 @@
   }
 </script>
 
-<Header></Header>
-
 <main>
   {#if loading}
     <div class="loading-container">
@@ -42,7 +40,7 @@
     </div>
   {:else}
     <div class="product-page">
-      <div class="product-images">
+      <div class="main-content">
         {#if productData.modelUrl}
           <model-viewer
             src={productData.modelUrl}
@@ -56,48 +54,56 @@
             alt={productData.title}
             class="main-image" />
         {/if}
-        <div class="thumbnail-images">
+        <div class="product-images">
           {#each productData.images as image}
-            <img src={image} alt={productData.title} class="thumbnail" />
+            <img src={image} alt={productData.title} class="product-image" />
           {/each}
         </div>
       </div>
 
-      <!-- Informations Produit -->
-      <div class="product-info">
-        <h1>{productData.title}</h1>
-        <div class="pricing">
-          <span class="current-price">{productData.price} €</span>
-          {#if productData.oldPrice}
-            <span class="old-price">{productData.oldPrice} €</span>
-          {/if}
+      <div class="sidebar">
+        <h2>{productData.title}</h2>
+        <p class="product-description">{productData.shortDescription}</p>
+        <div class="product-price">
+          <span class="product-price-value">{productData.price}</span>
+          <span class="product-price-currency">€</span>
         </div>
-        <button class="btn-buy">Add to cart</button>
-        <div class="color-options">
-          {#each productData.colors as color}
-            <span class="color-dot" style="background-color: {color}"></span>
-          {/each}
+
+        {#if productData.colors}
+          <div class="color-options">
+            <p><strong>Couleur</strong></p>
+            <div class="color-dots">
+              {#each productData.colors as color}
+                <span class="color-dot" style="background-color: #{color}"
+                ></span>
+              {/each}
+            </div>
+          </div>
+        {/if}
+
+        <button class="btn-add-to-cart">Ajouter au panier</button>
+
+        <div class="product-meta">
+          <p><strong>Dimensions</strong></p>
+          <p>
+            {productData.dimensions.width} x {productData.dimensions.height} x
+            {productData.dimensions.depth} cm
+          </p>
         </div>
-        <div class="delivery-info">
-          <p>🚚 Expected Delivery: {productData.deliveryTime}</p>
-          <p>🏠 Store pick-up: {productData.pickupTime}</p>
-        </div>
-        <div class="tabs">
-          <button
-            on:click={() => changeTab("Details")}
-            class={activeTab === "Details" ? "active" : ""}>Details</button>
-          <button
-            on:click={() => changeTab("Delivery")}
-            class={activeTab === "Delivery" ? "active" : ""}>Delivery</button>
-        </div>
-        <!-- Contenu des Onglets -->
-        <div class="tab-content">
-          {#if activeTab === "Details"}
-            <p>{productData.longDescription}</p>
-          {:else if activeTab === "Delivery"}
-            <p>Delivery details and terms go here.</p>
-          {/if}
-        </div>
+
+        {#if productData.deliveryInfo}
+          <div class="delivery-info">
+            <h3>Livraison</h3>
+            <p>{productData.deliveryInfo}</p>
+          </div>
+        {/if}
+
+        {#if productData.features}
+          <div class="product-features">
+            <h3>Détails du produit</h3>
+            <p>{productData.features}</p>
+          </div>
+        {/if}
       </div>
     </div>
   {/if}
@@ -108,105 +114,152 @@
 <style>
   .product-page {
     display: flex;
+    flex-direction: row;
+    gap: var(--space-lg);
+    padding: var(--space-xl);
     margin: auto;
-    background-color: var(--color-dark);
-    padding: var(--header-height) var(--space-lg);
   }
 
-  .product-images {
+  .main-content {
+    min-width: 70%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    flex: 1;
+    align-items: left;
+    gap: 20px;
   }
 
   .main-image {
     width: 100%;
-    background-size: cover;
-    border-radius: 8px;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 8px var(--color-shadow);
+    max-height: 70dvh;
   }
 
-  .main-image,
-  model-viewer {
+  .product-images {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
+    gap: 20px;
+    justify-items: center;
     width: 100%;
-    border-radius: 8px;
   }
 
-  .thumbnail-images {
+  .product-image {
     width: 100%;
-    display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    height: auto;
+    object-fit: cover;
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 2px 6px var(--color-shadow);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
-  .thumbnail {
-    width: 50%;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .product-info {
-    flex: 1;
+
+  .sidebar {
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 12px var(--color-shadow);
     display: flex;
     flex-direction: column;
+    gap: var(--space-lg);
+
+    position: sticky; /* Reste visible */
+    top: 20px; /* Distance par rapport au haut de l'écran */
+    align-self: flex-start; /* S'assure qu'elle s'aligne à gauche */
+    background-color: var(
+      --color-bg
+    ); /* Conserve un fond blanc pour la lisibilité */
   }
-  .product-info h1 {
+
+  .sidebar h2 {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    color: var(--color-light);
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--color-primary);
+  }
+
+  .product-description {
+    font-size: 16px;
+    color: var(--color-light);
+    line-height: 1.5;
+  }
+
+  .product-price {
     font-size: 28px;
     font-weight: bold;
-  }
-  .pricing {
+    color: var(--color-primary);
     display: flex;
-    gap: 10px;
-    font-size: 22px;
-  }
-  .current-price {
-    font-weight: bold;
-    color: #3498db;
-  }
-  .old-price {
-    color: #999;
-    text-decoration: line-through;
-  }
-  .btn-buy {
-    margin-top: 15px;
-    background-color: #3498db;
-    color: #fff;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-  }
-  .color-options {
-    display: flex;
+    align-items: baseline;
     gap: 5px;
-    margin: 15px 0;
   }
-  .color-dot {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    border: 1px solid #ddd;
-  }
-  .tabs {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin: 30px 0;
-  }
-  .tabs button {
-    padding: 10px;
-    font-size: 16px;
-    font-weight: bold;
+
+  .btn-add-to-cart {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    padding: 10px 15px;
+    border: none;
+    border-radius: var(--border-radius-md);
     cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition: background-color 0.3s ease;
   }
-  .tabs button.active {
-    border-bottom: 2px solid #3498db;
+
+  .btn-add-to-cart:hover {
+    background-color: var(--color-primary-dark);
   }
-  .tab-content {
-    max-width: 600px;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+
+  .color-dots {
+    display: flex;
+    gap: 10px; /* Espacement entre chaque pastille */
+    margin-top: 5px;
+  }
+
+  .color-dot {
+    width: 24px; /* Augmentez ou ajustez la taille si nécessaire */
+    height: 24px;
+    border-radius: 50%; /* Forme ronde */
+    border: 2px solid var(--color-light); /* Bordure visible sur fond foncé */
+    background-color: transparent; /* Assurez-vous qu'une couleur de fond est appliquée */
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+
+  .color-dot:hover {
+    transform: scale(1.2); /* Zoom sur survol */
+    border-color: var(
+      --color-primary
+    ); /* Changement de couleur de bordure au survol */
+  }
+
+  .product-meta {
+    font-size: 14px;
+    color: var(--color-dark);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 768px) {
+    .product-page {
+      flex-direction: column;
+    }
+
+    .main-content,
+    .sidebar {
+      width: 100%;
+    }
+
+    .btn-add-to-cart {
+      width: 100%;
+    }
+
+    .main-image,
+    model-viewer {
+      aspect-ratio: unset; /* Supprime le ratio sur les petits écrans si nécessaire */
+    }
+    .product-images {
+      grid-template-columns: 1fr; /* Une seule colonne sur petit écran */
+    }
   }
 </style>

@@ -42,6 +42,7 @@
     padding: 8px 15px;
     font-size: 14px;
     cursor: pointer;
+    bottom: 0;
     transition:
       background-color 0.3s ease,
       color 0.3s ease,

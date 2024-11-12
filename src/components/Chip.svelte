@@ -64,7 +64,7 @@
   }
 
   .chip:hover {
-    background-color: var(--color-secondary);
+    background-color: #e0e0e0;
     transform: scale(1.1);
   }
 

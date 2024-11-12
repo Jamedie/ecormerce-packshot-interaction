@@ -2,11 +2,17 @@
 :root {
   --header-height: 2rem;
   --footer-height: 2rem;
-  --space-xl: 2rem;
+  --space-xl: 4rem;
   --space-lg: 1.25rem;
   --space-md: 0.5rem;
   --space-sm: 0.25rem;
   --space-xs: 0.125rem;
+
+  /* border-radius */
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+  --border-radius-lg: 1rem;
+  --border-radius-xl: 1.5rem;
 
   /* Colors */
   --color-primary: #d4a017; /* Jaune moutarde */
@@ -100,7 +106,6 @@ h1 {
 h2 {
   text-align: center;
   font-size: 24px;
-  margin-bottom: 20px;
   font-weight: 700;
   text-align: center;
   color: white;
