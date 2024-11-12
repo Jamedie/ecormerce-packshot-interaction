@@ -32,7 +32,7 @@
   --color-input-text: #2b2924; /* Texte sombre des champs d'entrée */
 
   /* Shadows and Borders */
-  --color-shadow: rgba(0, 0, 0, 0.15); /* Ombre légère */
+  --color-shadow: rgba(0, 0, 0, 0.75); /* Ombre légère */
   --color-border: #dcd0ba; /* Bordures douces */
 
   /* Tabs */
