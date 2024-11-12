@@ -29,7 +29,7 @@
 
   function updateHero(imageSrc) {
     if (imageSrc === mainHeroImage) return;
-    isTransitioning = true; // Déclenche la transition
+    isTransitioning = true;
     setTimeout(() => {
       mainHeroImage = imageSrc;
       currentHero = heroData.find((item) => item.image === imageSrc) || {};
@@ -47,6 +47,7 @@
       height: img.naturalHeight,
     };
   }
+
   onMount(() => {
     // Désactive la restauration du scroll et remonte en haut de la page
     if ("scrollRestoration" in history) {

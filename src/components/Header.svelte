@@ -1,6 +1,5 @@
 <script>
   import { onMount } from "svelte";
-  import { fade } from "svelte/transition";
 
   let isVisible = false;
 
@@ -15,8 +14,7 @@
   <div class="header-content">
     <div class="header-promo">20% Discount on your first order</div>
     <nav class="header-nav">
-      <a href="#">Sign up to Newsletter</a>
-      <a href="#" class="btn-buy-now">Buy Now</a>
+      <a href="#newsletter">Sign up to Newsletter</a>
     </nav>
   </div>
 </header>
@@ -27,7 +25,7 @@
     height: var(--header-height);
     width: 100%;
     z-index: 1000;
-    background-color: var(--color-dark);
+    background-color: var(--color-primary);
     color: var(--color-light);
     padding: 10px 20px;
     display: flex;

@@ -5,7 +5,6 @@
   let id;
   let productData = {};
   let loading = true;
-  let activeTab = "Details"; // Onglet par défaut
 
   onMount(async () => {
     loading = true;
@@ -13,15 +12,24 @@
       const urlParts = window.location.pathname.split("/");
       id = urlParts[urlParts.length - 1];
       const res = await fetch("/data/products.json");
-      if (!res.ok) throw new Error("Erreur lors du chargement des données");
+      if (!res.ok) {
+        throw new Error("Erreur lors du chargement des données");
+      }
       const products = await res.json();
       productData = products.find((product) => product.id === +id);
+
+      if (!productData) {
+        window.location.href = "/404";
+      }
     } catch (error) {
-      console.error(error.message);
+      console.error("Product not found:", error.message);
+      window.location.href = "/404";
     }
     loading = false;
   });
 </script>
+
+<Header />
 
 <main>
   {#if loading}
@@ -105,7 +113,7 @@
   {/if}
 </main>
 
-<Footer></Footer>
+<Footer />
 
 <style>
   .product-page {
@@ -113,6 +121,7 @@
     flex-direction: row;
     gap: var(--space-lg);
     padding: var(--space-xl);
+    padding-bottom: 0;
     margin: auto;
   }
 
@@ -121,7 +130,7 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    gap: 20px;
+    gap: var(--space-lg);
   }
 
   .main-image {
@@ -160,11 +169,9 @@
     gap: var(--space-lg);
 
     position: sticky; /* Reste visible */
-    top: 20px; /* Distance par rapport au haut de l'écran */
-    align-self: flex-start; /* S'assure qu'elle s'aligne à gauche */
-    background-color: var(
-      --color-bg
-    ); /* Conserve un fond blanc pour la lisibilité */
+    top: calc(var(--header-height) + var(--space-md));
+    align-self: flex-start;
+    background-color: var(--color-bg);
   }
 
   .sidebar h2 {
@@ -195,16 +202,19 @@
     background-color: var(--color-primary);
     color: var(--color-light);
     padding: 10px 15px;
-    border: none;
+    border: 2px solid transparent; /* Bordure transparente par défaut */
     border-radius: var(--border-radius-md);
     cursor: pointer;
     font-weight: bold;
     text-align: center;
-    transition: background-color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      border 0.3s ease;
   }
 
   .btn-add-to-cart:hover {
     background-color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary); /* Ajoute une bordure blanche au survol */
   }
 
   .color-dots {

@@ -4,65 +4,152 @@
   }
 </script>
 
-<footer class="main-footer">
-  <div class="footer-content">
-    <button on:click={() => navigate("/")} class="footer-btn">Accueil</button>
-    <button on:click={() => navigate("/products")} class="footer-btn">
-      Voir la liste des produits
-    </button>
-    <button on:click={() => navigate("/products/101")} class="footer-btn">
-      Produit 1
-    </button>
-    <button on:click={() => navigate("/404")} class="footer-btn">404</button>
+<footer>
+  <div class="footer-brand">
+    <h4>Wonder-Shop</h4>
+    <p class="about-description">
+      Wonder-Shop révolutionne l’e-commerce grâce à l’intelligence artificielle.<br />
+      Nos algorithmes sélectionnent des produits alliant style, innovation et durabilité,<br />
+      pour une expérience d’achat personnalisée et unique.<br /> Laissez l’IA sublimer
+      votre quotidien avec des articles parfaitement adaptés à vos besoins et à votre
+      style.
+    </p>
+  </div>
+
+  <div class="footer-links-section">
+    <div class="support">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Contactez-nous</a></li>
+        <li><a href="#">FAQs</a></li>
+        <li><a href="#">Expédition et retours</a></li>
+      </ul>
+    </div>
+
+    <div id="newsletter">
+      <h4>Restez informé</h4>
+      <p>
+        Abonnez-vous à notre newsletter<br /> et laissez l’intelligence artificielle
+        dénicher pour vous les tendances de demain.
+      </p>
+      <p>Un clic suffit pour rejoindre la révolution Wonder-Shop !</p>
+      <form>
+        <input type="email" placeholder="Adresse e-mail" />
+        <button type="submit">S'abonner</button>
+      </form>
+    </div>
   </div>
 </footer>
 
 <style>
-  .main-footer {
-    height: var(--footer-height);
-    background-color: var(--color-dark);
-    color: var(--color-light);
+  footer {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: var(--space-md) var(--space-lg);
-    box-shadow: 0 -2px 4px var(--color-shadow);
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: var(--space-xl);
   }
 
-  .footer-content {
+  .footer-brand {
+    display: flex;
+    flex-direction: column;
+    min-width: 200px;
+    max-width: 30%;
+  }
+
+  footer h4 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: var(--space-sm);
+    color: var(--color-primary);
+  }
+
+  .footer-links-section {
     display: flex;
     gap: var(--space-lg);
   }
 
-  .footer-btn {
-    background-color: var(--color-dark);
-    color: var(--color-light);
-    border: 1px solid var(--color-light);
-    border-radius: 5px;
-    padding: 8px 15px;
-    font-size: 14px;
-    cursor: pointer;
-    bottom: 0;
-    transition:
-      background-color 0.3s ease,
-      color 0.3s ease,
-      border-color 0.3s;
+  .support {
+    display: flex;
+    flex-direction: column;
   }
 
-  .footer-btn:hover {
-    background-color: var(--color-primary); /* Jaune moutarde pour hover */
-    color: var(--color-dark);
-    border-color: var(--color-primary);
+  #newsletter {
+    min-width: 400px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-links-section ul li a {
+    color: var(--color-light);
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .footer-links-section ul li a:hover {
+    color: var(--color-primary);
+  }
+
+  .footer-links-section form {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: flex-end; /* Aligne le formulaire à droite */
+    margin-top: var(--space-md);
+  }
+
+  .footer-links-section input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    border-radius: var(--border-radius-md);
+    border: 1px solid var(--color-light);
+    background-color: var(--color-dark);
+    color: var(--color-light);
+  }
+
+  .footer-links-section button {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    padding: 10px 15px;
+    border: 2px solid transparent; /* Bordure transparente par défaut */
+    border-radius: var(--border-radius-md);
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+    transition:
+      background-color 0.3s ease,
+      border 0.3s ease;
+  }
+
+  .footer-links-section button:hover {
+    background-color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary); /* Ajoute une bordure blanche au survol */
+  }
+
+  .support ul {
+    display: flex;
+    flex-direction: column; /* Mise en colonne */
+    gap: var(--space-sm);
   }
 
   @media (max-width: 768px) {
-    .footer-content {
+    footer {
       flex-direction: column;
       gap: var(--space-md);
     }
 
-    .footer-btn {
-      width: 100%; /* Boutons pleins pour petits écrans */
+    .footer-links-section {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-lg);
+    }
+
+    .newsletter form {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .newsletter input[type="email"],
+    .newsletter button {
+      width: 100%;
     }
   }
 </style>
