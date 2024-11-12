@@ -1,5 +1,7 @@
 <script>
   import { onMount } from "svelte";
+  import Header from "$components/Header.svelte";
+  import Footer from "$components/Footer.svelte";
   let id;
   let productData = {};
   let loading = true;
@@ -25,107 +27,120 @@
   }
 </script>
 
-{#if loading}
-  <div class="loading-container">
-    <div class="loading-content">
-      <img src="../assets/icons/loading-icon.svg" alt="Chargement..." />
-      <p>Chargement...</p>
-    </div>
-  </div>
-{:else}
-  <div class="product-page">
-    <!-- Images -->
-    <div class="product-images">
-      {#if productData.modelUrl}
-        <!-- Model Viewer si un modèle 3D est disponible -->
-        <model-viewer
-          src={productData.modelUrl}
-          alt={productData.title}
-          ar
-          camera-controls
-          auto-rotate></model-viewer>
-      {:else}
-        <!-- Image principale -->
+<Header></Header>
+
+<main>
+  {#if loading}
+    <div class="loading-container">
+      <div class="loading-content">
         <img
-          src={productData.mainImage}
-          alt={productData.title}
-          class="main-image" />
-      {/if}
-      <!-- Autres images -->
-      <div class="thumbnail-images">
-        {#each productData.images as image}
-          <img src={image} alt={productData.title} class="thumbnail" />
-        {/each}
+          id="loading-spinner"
+          src="/images/spinner.gif"
+          alt="Chargement..." />
+        <p>Chargement...</p>
       </div>
     </div>
-
-    <!-- Informations Produit -->
-    <div class="product-info">
-      <h1>{productData.title}</h1>
-      <div class="rating">★ ★ ★ ★ ★ ({productData.reviews} reviews)</div>
-      <div class="pricing">
-        <span class="current-price">{productData.price} €</span>
-        {#if productData.oldPrice}
-          <span class="old-price">{productData.oldPrice} €</span>
+  {:else}
+    <div class="product-page">
+      <div class="product-images">
+        {#if productData.modelUrl}
+          <model-viewer
+            src={productData.modelUrl}
+            alt={productData.title}
+            ar
+            camera-controls
+            auto-rotate></model-viewer>
+        {:else}
+          <img
+            src={productData.mainImage}
+            alt={productData.title}
+            class="main-image" />
         {/if}
+        <div class="thumbnail-images">
+          {#each productData.images as image}
+            <img src={image} alt={productData.title} class="thumbnail" />
+          {/each}
+        </div>
       </div>
-      <button class="btn-buy">Add to cart</button>
-      <div class="color-options">
-        {#each productData.colors as color}
-          <span class="color-dot" style="background-color: {color}"></span>
-        {/each}
-      </div>
-      <div class="delivery-info">
-        <p>🚚 Expected Delivery: {productData.deliveryTime}</p>
-        <p>🏠 Store pick-up: {productData.pickupTime}</p>
+
+      <!-- Informations Produit -->
+      <div class="product-info">
+        <h1>{productData.title}</h1>
+        <div class="pricing">
+          <span class="current-price">{productData.price} €</span>
+          {#if productData.oldPrice}
+            <span class="old-price">{productData.oldPrice} €</span>
+          {/if}
+        </div>
+        <button class="btn-buy">Add to cart</button>
+        <div class="color-options">
+          {#each productData.colors as color}
+            <span class="color-dot" style="background-color: {color}"></span>
+          {/each}
+        </div>
+        <div class="delivery-info">
+          <p>🚚 Expected Delivery: {productData.deliveryTime}</p>
+          <p>🏠 Store pick-up: {productData.pickupTime}</p>
+        </div>
+        <div class="tabs">
+          <button
+            on:click={() => changeTab("Details")}
+            class={activeTab === "Details" ? "active" : ""}>Details</button>
+          <button
+            on:click={() => changeTab("Delivery")}
+            class={activeTab === "Delivery" ? "active" : ""}>Delivery</button>
+        </div>
+        <!-- Contenu des Onglets -->
+        <div class="tab-content">
+          {#if activeTab === "Details"}
+            <p>{productData.longDescription}</p>
+          {:else if activeTab === "Delivery"}
+            <p>Delivery details and terms go here.</p>
+          {/if}
+        </div>
       </div>
     </div>
-  </div>
+  {/if}
+</main>
 
-  <!-- Tabs Produit -->
-  <div class="tabs">
-    <button
-      on:click={() => changeTab("Details")}
-      class={activeTab === "Details" ? "active" : ""}>Details</button>
-    <button
-      on:click={() => changeTab("Delivery")}
-      class={activeTab === "Delivery" ? "active" : ""}>Delivery</button>
-  </div>
-
-  <!-- Contenu des Onglets -->
-  <div class="tab-content">
-    {#if activeTab === "Details"}
-      <p>{productData.longDescription}</p>
-    {:else if activeTab === "Delivery"}
-      <p>Delivery details and terms go here.</p>
-    {/if}
-  </div>
-{/if}
+<Footer></Footer>
 
 <style>
   .product-page {
     display: flex;
-    gap: 30px;
-    max-width: 1200px;
     margin: auto;
-    padding: 40px 20px;
+    background-color: var(--color-dark);
+    padding: var(--header-height) var(--space-lg);
   }
+
   .product-images {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     flex: 1;
   }
+
+  .main-image {
+    width: 100%;
+    background-size: cover;
+    border-radius: 8px;
+  }
+
   .main-image,
   model-viewer {
     width: 100%;
-    max-width: 600px;
     border-radius: 8px;
   }
+
   .thumbnail-images {
+    width: 100%;
     display: flex;
     gap: 10px;
     margin-top: 10px;
   }
   .thumbnail {
-    width: 80px;
+    width: 50%;
     border-radius: 8px;
     cursor: pointer;
   }
@@ -137,10 +152,6 @@
   .product-info h1 {
     font-size: 28px;
     font-weight: bold;
-  }
-  .rating {
-    margin: 10px 0;
-    color: #f39c12;
   }
   .pricing {
     display: flex;

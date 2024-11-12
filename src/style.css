@@ -3,16 +3,47 @@
   --header-height: 2rem;
   --footer-height: 2rem;
   --space-xl: 2rem;
-  --space-lg: 1rem;
+  --space-lg: 1.25rem;
   --space-md: 0.5rem;
   --space-sm: 0.25rem;
   --space-xs: 0.125rem;
 
-  --color-bg-header: #000;
-  --color-text-header: #fff;
+  /* Colors */
+  --color-primary: #d4a017; /* Jaune moutarde */
+  --color-secondary: #4b6584; /* Bleu gris complémentaire */
+  --color-accent: #e67e22; /* Orange épicé pour les éléments accentués */
+  --color-light: #fdf7e3; /* Beige clair pour un fond doux */
+  --color-dark: #2b2924; /* Noir brun, légèrement plus chaleureux que le noir pur */
 
-  --color-bg-footer: #000;
-  --color-text-footer: #fff;
+  /* Buttons */
+  --color-btn-bg: #d4a017; /* Jaune moutarde */
+  --color-btn-bg-hover: #b58412; /* Jaune moutarde plus foncé pour le hover */
+  --color-btn-text: #2b2924; /* Texte des boutons foncé pour le contraste */
+
+  /* Input Fields */
+  --color-input-bg: #f9f5e6; /* Beige clair pour les champs d'entrée */
+  --color-input-border: #dcd0ba; /* Bordure beige */
+  --color-input-text: #2b2924; /* Texte sombre des champs d'entrée */
+
+  /* Shadows and Borders */
+  --color-shadow: rgba(0, 0, 0, 0.15); /* Ombre légère */
+  --color-border: #dcd0ba; /* Bordures douces */
+
+  /* Tabs */
+  --color-tab-active: #d4a017; /* Jaune moutarde */
+  --color-tab-text: #4b6584; /* Bleu gris pour les onglets inactifs */
+
+  /* Notifications and Alerts */
+  --color-success: #27ae60; /* Vert pour les succès */
+  --color-warning: #f39c12; /* Jaune orangé pour les avertissements */
+  --color-error: #c0392b; /* Rouge profond pour les erreurs */
+
+  /* Loading Icon */
+  --color-loading-icon: #d4a017; /* Aligné avec la couleur principale */
+
+  /* Additional Text Colors */
+  --color-text-muted: #7f8c8d; /* Gris moyen pour le texte secondaire */
+  --color-text-highlight: #d4a017; /* Jaune moutarde pour attirer l'attention */
 }
 
 /* // ------ RESET CSS ------ // */

@@ -57,14 +57,14 @@
     transition:
       transform 0.3s,
       background-color 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px var(--color-shadow);
     z-index: 2;
     border: none;
     outline: none;
   }
 
   .chip:hover {
-    background-color: #f0f0f0;
+    background-color: var(--color-secondary);
     transform: scale(1.1);
   }
 
@@ -88,7 +88,7 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px var(--color-shadow);
     opacity: 0;
     transform: scale(0.5);
     transition:

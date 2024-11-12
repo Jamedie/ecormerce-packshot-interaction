@@ -126,7 +126,7 @@
     align-items: center;
     background-size: cover;
     background-position: center;
-    color: #000000;
+    color: var(--color-dark);
     text-align: center;
     padding-top: 180px;
     position: relative;
@@ -137,11 +137,11 @@
     font-size: 48px;
     font-weight: bold;
     margin-bottom: 10px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Ombre portée pour le titre */
+    text-shadow: 2px 2px 4px var(--color-shadow); /* Ombre portée pour le titre */
   }
 
   .hero-content p {
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+    text-shadow: 2px 2px 4px var(--color-shadow);
     font-size: 18px;
     margin-bottom: 20px;
   }
@@ -149,7 +149,7 @@
   /* Button Shop Now Styling */
   .btn-shop-now {
     background-color: #fff;
-    color: #000;
+    color: var(--color-dark);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -158,8 +158,8 @@
   }
 
   .btn-shop-now:hover {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--color-dark);
+    color: var(--color-light);
   }
 
   /* Hero Thumbnails Styling */
@@ -197,7 +197,7 @@
     background-color: rgba(255, 255, 255, 0.9); /* Fond blanc transparent */
     padding: 15px;
     border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--box-shadow);
     max-width: 300px;
     min-height: 300px;
     text-align: left;
@@ -209,13 +209,13 @@
     font-size: 18px;
     font-weight: bold;
     margin-bottom: 5px;
-    color: #000;
+    color: var(--color-dark);
   }
 
   .hero-description p {
     font-size: 14px;
     margin-bottom: 10px;
-    color: #000;
+    color: var(--color-dark);
   }
 
   .hero-description a {
@@ -241,13 +241,13 @@
     left: 50%;
     transform: translateX(-50%);
     font-size: 24px; /* Taille du chevron */
-    color: #000; /* Couleur noire */
+    color: var(--color-dark); /* Couleur noire */
     cursor: pointer;
     animation: bounce 1.5s infinite; /* Animation pour attirer l'attention */
   }
 
   .hero-chevron:hover {
-    color: #555; /* Change légèrement la couleur au survol */
+    color: var(--color-primary); /* Change légèrement la couleur au survol */
   }
 
   /* Animation de rebond pour le chevron */
@@ -290,6 +290,6 @@
       transform 0.6s ease-in-out;
   }
   button:focus-visible {
-    outline: 2px solid #007bff;
+    outline: 2px solid var(--color-primary);
   }
 </style>
