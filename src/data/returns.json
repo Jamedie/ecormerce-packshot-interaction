@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Quels articles peuvent être retournés ?",
+    "description": "Tous les articles, sauf ceux qui semblent avoir survécu à une apocalypse. Les articles customisés ? Non, vous devrez vivre avec vos choix. Le reste, notre IA des Retours le scanne en un clin d’œil."
+  },
+  {
+    "title": "Combien de temps faut-il pour traiter un retour ?",
+    "description": "Dès réception, le **Secrétaire Général des Retours** active son protocole ultra-secret. En 5 à 10 jours ouvrables, votre dossier sera traité, sauf en cas d'alignement cosmique défavorable."
+  },
+  {
+    "title": "Frais de retour : qui paie ?",
+    "description": "Vous, bien sûr. Sauf si vous avez une excuse digne d'un film d'action. Dans ce cas, le Secrétaire Général pourrait *considérer* un remboursement... si vous jouez bien vos cartes."
+  },
+  {
+    "title": "Puis-je échanger un article au lieu de le retourner ?",
+    "description": "Échanger ? Peut-être. Mais seulement si vous passez les tests impitoyables de notre IA. Préparez-vous à prouver que l’échange améliorera l’équilibre de l’univers."
+  },
+  {
+    "title": "Comment emballer un retour ?",
+    "description": "Utilisez un carton solide, prêt à encaisser un astéroïde. L'IA logistique refuse tout retour qui ressemble à un colis lancé par catapulte."
+  },
+  {
+    "title": "Que faire si mon colis est perdu pendant le retour ?",
+    "description": "Pas de panique. Nos algorithmes activent un mode *recherche avancée*."
+  },
+  {
+    "title": "Quels articles ne peuvent pas être retournés ?",
+    "description": "Ceux qui ont été modifiés par des expériences douteuses ou utilisés dans un clip de rap. Aussi, toute marchandise qui a manifestement vécu sa meilleure vie avant d’arriver chez nous."
+  },
+  {
+    "title": "Et si l'article reçu est défectueux ?",
+    "description": "Filmez le problème comme si vous postuliez aux Oscars. Notre IA analysera tout, du produit à vos émotions, avant de valider un échange ou un remboursement."
+  },
+  {
+    "title": "Politique de retour flexible ?",
+    "description": "Flexible, oui, mais pas sans limites. Chaque retour est jugé par un jury d’IA. Si votre cas fait pleurer des robots, vous avez toutes vos chances."
+  }
+]

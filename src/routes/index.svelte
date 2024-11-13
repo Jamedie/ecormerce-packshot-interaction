@@ -8,6 +8,7 @@
 <main>
   <Header />
   <Hero />
+  <Gallery />
   <Footer />
 </main>
 

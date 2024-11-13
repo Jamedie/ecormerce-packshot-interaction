@@ -5,9 +5,9 @@
     "description": "Les fauteuils emblématiques incarnent une alliance parfaite entre design ergonomique et sophistication contemporaine, optimisés pour un confort premium.",
     "link": "#",
     "chips": [
-      { "left": 790, "top": 572, "price": 80, "productId": "101" },
-      { "left": 1045, "top": 628, "price": 65, "productId": "102" },
-      { "left": 1306, "top": 573, "price": 90, "productId": "103" }
+      { "left": 42, "top": 64, "price": 80, "productId": "101" },
+      { "left": 56, "top": 67, "price": 65, "productId": "102" },
+      { "left": 68, "top": 68, "price": 90, "productId": "103" }
     ]
   },
   {
@@ -15,7 +15,7 @@
     "title": "Summit Space : L'art de la modularité pour des moments partagés en toute élégance",
     "description": "Les tables et bancs modulaires incarnent une synergie parfaite entre minimalisme industriel et convivialité haut de gamme.",
     "link": "#",
-    "chips": [{ "left": 1056, "top": 652, "price": 990, "productId": "101" }]
+    "chips": [{ "left": 55, "top": 70, "price": 990, "productId": "101" }]
   },
   {
     "image": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FNouveauxHorizons_Zone05.jpg?alt=media",
@@ -23,8 +23,8 @@
     "description": "Ce canapé 3 places incarne l'équilibre parfait entre design minimaliste et confort d'exception.",
     "link": "#",
     "chips": [
-      { "left": 597, "top": 563, "price": 50, "productId": "101" },
-      { "left": 935, "top": 607, "price": 150, "productId": "101" }
+      { "left": 50, "top": 62, "price": 50, "productId": "101" },
+      { "left": 31, "top": 62, "price": 150, "productId": "101" }
     ]
   }
 ]

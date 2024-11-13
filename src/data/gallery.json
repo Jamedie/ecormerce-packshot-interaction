@@ -1,55 +1,55 @@
 [
   {
     "image": {
-      "src": "./assets/images/image1.jpg",
+      "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fimage2.jpg?alt=media",
       "ratio": "16/9",
       "alt": "Packshot 1",
-      "size": 50,
-      "height": 9
+      "size": 3,
+      "height": 3
     },
-    "pastilles": [{ "left": 690, "top": 542, "price": 599, "productId": 101 }]
+    "chips": [{ "left": 55, "top": 65, "price": 599, "productId": 101 }]
   },
   {
     "image": {
-      "src": "./assets/images/image3.jpg",
+      "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fimage3.jpg?alt=media",
       "ratio": "9/16",
-      "size": 10,
-      "height": 9,
-      "alt": "Packshot 3"
+      "alt": "Packshot 3",
+      "size": 1,
+      "height": 3
     },
-    "pastilles": [{ "left": 193, "top": 557, "price": 50, "productId": 102 }]
+    "chips": [{ "left": 34, "top": 69, "price": 50, "productId": 102 }]
   },
   {
     "image": {
-      "src": "./assets/images/image2.jpg",
-      "ratio": "16/9",
-      "alt": "Packshot 2",
-      "size": 60,
-      "height": 4
-    },
-    "pastilles": [{ "left": 1056, "top": 685, "price": 399, "productId": 103 }]
-  },
-  {
-    "image": {
-      "src": "./assets/images/image4.jpg",
-      "ratio": "9/16",
-      "alt": "Packshot 4",
-      "size": 20,
-      "height": 9
-    },
-    "pastilles": [{ "left": 412, "top": 589, "price": 399, "productId": 104 }]
-  },
-  {
-    "image": {
-      "src": "./assets/images/image5.jpg",
+      "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fimage6.jpg?alt=media&",
       "ratio": "16/9",
       "alt": "Packshot 5",
-      "size": 40,
-      "height": 9
+      "size": 4,
+      "height": 4
     },
-    "pastilles": [
-      { "left": 641, "top": 405, "price": 499, "productId": 105 },
-      { "left": 269, "top": 586, "price": 149, "productId": 106 }
+    "chips": [
+      { "left": 44, "top": 51, "price": 499, "productId": 105 },
+      { "left": 85, "top": 61, "price": 149, "productId": 106 }
     ]
+  },
+  {
+    "image": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fimage4.jpg?alt=media",
+      "ratio": "16/9",
+      "alt": "Packshot 2",
+      "size": 2,
+      "height": 3
+    },
+    "chips": [{ "left": 49, "top": 65, "price": 399, "productId": 103 }]
+  },
+  {
+    "image": {
+      "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fimage5.jpg?alt=media",
+      "ratio": "9/16",
+      "alt": "Packshot 4",
+      "size": 2,
+      "height": 3
+    },
+    "chips": [{ "left": 60, "top": 50, "price": 399, "productId": 104 }]
   }
 ]

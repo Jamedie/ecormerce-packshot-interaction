@@ -16,9 +16,9 @@
 
   /* Colors */
   --color-primary: #d4a017; /* Jaune moutarde */
-  --color-secondary: #4b6584; /* Bleu gris complémentaire */
+  --color-secondary: #f0f0f0; /* Gris clair */
   --color-accent: #e67e22; /* Orange épicé pour les éléments accentués */
-  --color-light: #fdf7e3; /* Beige clair pour un fond doux */
+  --color-light: #e4e3e1; /* Beige clair pour un fond doux */
   --color-dark: #2b2924; /* Noir brun, légèrement plus chaleureux que le noir pur */
 
   /* Buttons */
@@ -73,7 +73,7 @@ body {
   height: 100svh;
   margin: 0;
   min-width: 320px;
-  background-color: black;
+  background-color: var(--color-dark);
   font-family: "Roboto", sans-serif;
   overflow-x: hidden;
   scroll-behavior: smooth;
@@ -89,19 +89,18 @@ ul,
 ol {
   list-style: none;
   display: inline-block;
-  color: white;
+  color: var(--color-light);
 }
 
 p {
   font-size: 14px;
-
-  color: white;
+  color: var(--color-light);
 }
 
 h1 {
   font-size: 32px;
   font-weight: 700;
-  color: white;
+  color: var(--color-light);
 }
 
 h2 {
@@ -109,11 +108,11 @@ h2 {
   font-size: 24px;
   font-weight: 700;
   text-align: center;
-  color: white;
+  color: var(--color-light);
 }
 
 h3 {
   font-size: 20px;
   font-weight: 700;
-  color: white;
+  color: var(--color-light);
 }

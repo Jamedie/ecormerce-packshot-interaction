@@ -34,7 +34,7 @@
       mainHeroImage = imageSrc;
       currentHero = heroData.find((item) => item.image === imageSrc) || {};
       chips = currentHero.chips || [];
-    }, 200);
+    }, 300);
     setTimeout(() => {
       isTransitioning = false;
     }, 600);
@@ -46,10 +46,11 @@
       width: img.naturalWidth,
       height: img.naturalHeight,
     };
+
+    console.log("Image loaded", imageDimensions);
   }
 
   onMount(() => {
-    // Désactive la restauration du scroll et remonte en haut de la page
     if ("scrollRestoration" in history) {
       history.scrollRestoration = "manual";
     }
@@ -62,30 +63,21 @@
   });
 </script>
 
-<section class="hero" style="background-image: url({mainHeroImage})">
-  <source srcset={mainHeroImage} type="image/webp" />
+<section class="hero">
   <img
+    class="hero-image"
     src={mainHeroImage}
     alt="Main Hero"
     on:load={onImageLoad}
-    style="display: none;" />
-
-  <div class="hero-content">
-    <h1>InnovAItion Outdoor</h1>
-    <p>
-      L'excellence de l'intelligence artificielle au service de vos moments en
-      plein air.
-    </p>
-    <a href="#" class="btn-shop-now">Shop now</a>
-  </div>
+    style="opacity: {isTransitioning ? 0 : 1};" />
 
   {#if isInitialized}
     <!--  Gestion des chips -->
     <div class="chips-container {isTransitioning ? 'fade-content' : ''}">
       {#each chips as chip}
         <Chip
-          left={chip.left}
-          top={chip.top}
+          leftPercent={chip.left}
+          topPercent={chip.top}
           {imageDimensions}
           price={chip.price}
           productId={chip.productId} />
@@ -112,26 +104,55 @@
       <a href={currentHero.link || "#"} class="btn-shop-now">Shop now</a>
     </div>
   {/if}
+
+  <div class="hero-content">
+    <h1>InnovAItion Outdoor</h1>
+    <p>
+      L'excellence de l'intelligence artificielle au service de vos moments en
+      plein air.
+    </p>
+  </div>
+
   <!-- Chevron pour le scroll -->
-  <div class="hero-chevron" id="scroll-chevron">&#x25BC;</div>
+  <a href="#scroll-chevron" class="hero-chevron" id="scroll-chevron"
+    >&#x25BC;</a>
 </section>
 
 <style>
   /* Hero Section Styling */
   .hero {
+    position: relative;
     width: 100%;
     height: 100vh;
-    display: flex;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hero-content {
+    top: 20%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    background-size: cover;
-    background-position: center;
-    color: var(--color-dark);
     text-align: center;
-    padding-top: 180px;
+  }
+
+  .hero-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  .chips-container {
     position: relative;
-    transition: background-image 0.6s ease-in-out;
+    width: 100%;
+    height: 100vh;
   }
 
   .hero-content h1 {
@@ -149,8 +170,8 @@
 
   /* Button Shop Now Styling */
   .btn-shop-now {
-    background-color: #fff;
-    color: var(--color-dark);
+    background-color: var(--color-btn-bg);
+    color: var(--color-btn-text);
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -159,7 +180,7 @@
   }
 
   .btn-shop-now:hover {
-    background-color: var(--color-dark);
+    background-color: var(--color-btn-bg-hover);
     color: var(--color-light);
   }
 
@@ -227,12 +248,6 @@
     font-weight: bold;
     text-decoration: none;
     margin-top: 15px; /* Ajoute un espacement au-dessus du bouton */
-  }
-
-  .chips-container {
-    position: relative;
-    width: 100%;
-    height: 100%;
   }
 
   /* Chevron Styling */

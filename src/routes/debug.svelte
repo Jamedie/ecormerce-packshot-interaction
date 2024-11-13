@@ -1,0 +1,54 @@
+<script>
+  let imageDimensions = { width: 0, height: 0 };
+  function onImageLoad(event) {
+    const img = event.target;
+    imageDimensions = {
+      width: img.naturalWidth,
+      height: img.naturalHeight,
+    };
+  }
+  function getClickPosition(event) {
+    const image = event.target;
+    const rect = image.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const clickXPercent =
+      (((x / rect.width) * imageDimensions.width) / imageDimensions.width) *
+      100;
+    const clickYPercent =
+      (((y / rect.height) * imageDimensions.height) / imageDimensions.height) *
+      100;
+
+    console.log(
+      `Position relative à l'image ( ${clickXPercent} , ${clickYPercent} )`
+    );
+  }
+</script>
+
+<main>
+  <img
+    src="https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FNouveauxHorizons_Zone05.jpg?alt=media"
+    alt="Packshot"
+    on:load={onImageLoad}
+    on:click={getClickPosition} />
+</main>
+
+<style>
+  main {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    display: flex; /* Active un conteneur flex */
+    align-items: center; /* Centre verticalement l'image */
+    justify-content: center; /* Centre horizontalement l'image */
+    height: 100dvh; /* Occupe toute la hauteur de l'écran */
+    background-color: var(--color-bg-light); /* Couleur de fond si nécessaire */
+  }
+
+  img {
+    max-width: 100%; /* Ne dépasse pas la largeur du conteneur */
+    max-height: 100%; /* Ne dépasse pas la hauteur du conteneur */
+    object-fit: contain; /* S'assure que l'image conserve ses proportions */
+    border-radius: var(--border-radius-md); /* Optionnel : arrondi des coins */
+  }
+</style>

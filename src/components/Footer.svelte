@@ -20,9 +20,10 @@
     <div class="support">
       <h4>Support</h4>
       <ul>
-        <li><a href="#">Contactez-nous</a></li>
-        <li><a href="#">FAQs</a></li>
-        <li><a href="#">Expédition et retours</a></li>
+        <li><a href="/contact">Contactez-nous</a></li>
+        <li><a href="/faq">FAQs</a></li>
+        <li><a href="/returns">Expédition et retours</a></li>
+        <li><a href="/legals">Mention legales</a></li>
       </ul>
     </div>
 
@@ -106,7 +107,7 @@
   }
 
   .footer-links-section button {
-    background-color: var(--color-primary);
+    background-color: var(--color-btn-bg);
     color: var(--color-light);
     padding: 10px 15px;
     border: 2px solid transparent; /* Bordure transparente par défaut */
@@ -121,7 +122,7 @@
 
   .footer-links-section button:hover {
     background-color: var(--color-primary-dark);
-    border: 2px solid var(--color-primary); /* Ajoute une bordure blanche au survol */
+    border: 2px solid var(--color-btn-bg); /* Ajoute une bordure blanche au survol */
   }
 
   .support ul {

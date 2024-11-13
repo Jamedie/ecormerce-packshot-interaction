@@ -1,12 +1,8 @@
 <script>
-  export let left = 0;
-  export let top = 0;
-  export let imageDimensions = { width: 1, height: 1 };
+  export let leftPercent = 0;
+  export let topPercent = 0;
   export let price = null;
   export let productId = null;
-
-  $: leftPercent = (left / imageDimensions.width) * 100;
-  $: topPercent = (top / imageDimensions.height) * 100;
 </script>
 
 <div class="chip-container" style="left: {leftPercent}%; top: {topPercent}%;">

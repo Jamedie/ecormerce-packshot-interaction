@@ -120,7 +120,7 @@
     display: flex;
     flex-direction: row;
     gap: var(--space-lg);
-    padding: var(--space-xl);
+    padding: var(--space-lg);
     padding-bottom: 0;
     margin: auto;
   }
@@ -163,7 +163,6 @@
 
   .sidebar {
     border-radius: var(--border-radius-md);
-    box-shadow: 0 4px 12px var(--color-shadow);
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
