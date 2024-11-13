@@ -27,28 +27,33 @@
 </script>
 
 <main>
-  <img
-    src="https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FNouveauxHorizons_Zone05.jpg?alt=media"
-    alt="Packshot"
-    on:load={onImageLoad}
-    on:click={getClickPosition} />
+  <button
+    class="image-button"
+    on:click={getClickPosition}
+    aria-label="Cliquez sur l'image">
+    <img
+      src="https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FNouveauxHorizons_Zone05.jpg?alt=media"
+      alt="Packshot"
+      on:load={onImageLoad} />
+  </button>
 </main>
 
 <style>
   main {
     font-family: Arial, sans-serif;
     text-align: center;
-    display: flex; /* Active un conteneur flex */
-    align-items: center; /* Centre verticalement l'image */
-    justify-content: center; /* Centre horizontalement l'image */
-    height: 100dvh; /* Occupe toute la hauteur de l'écran */
-    background-color: var(--color-bg-light); /* Couleur de fond si nécessaire */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100dvh;
+    background-color: var(--color-bg-light);
   }
 
   img {
-    max-width: 100%; /* Ne dépasse pas la largeur du conteneur */
-    max-height: 100%; /* Ne dépasse pas la hauteur du conteneur */
-    object-fit: contain; /* S'assure que l'image conserve ses proportions */
-    border-radius: var(--border-radius-md); /* Optionnel : arrondi des coins */
+    max-width: 100%;
+    max-height: 100dvh;
+    object-fit: contain;
+    border-radius: var(--border-radius-md);
   }
 </style>
