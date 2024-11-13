@@ -120,8 +120,8 @@
     display: flex;
     flex-direction: row;
     gap: var(--space-lg);
-    padding: var(--space-lg);
-    padding-bottom: 0;
+    padding: calc(var(--header-height) + var(--space-lg)) var(--space-lg) 0
+      var(--space-lg);
     margin: auto;
   }
 
