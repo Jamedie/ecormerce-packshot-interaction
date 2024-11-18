@@ -5,11 +5,12 @@
   import ProductList from "$routes/products/ProductList.svelte";
   import NotFound from "$routes/404.svelte";
   import Configuration from "$routes/configuration.svelte";
-  import Debug from "$routes/debug.svelte";
   import Contact from "$routes/contact.svelte";
   import Faq from "$routes/faq.svelte";
   import Returns from "$routes/returns.svelte";
   import Legals from "$routes/legals.svelte";
+  import DebugImage from "$routes/debug-image.svelte";
+  import DebugModel from "$routes/debug-model.svelte";
 
   let currentComponent;
 
@@ -23,7 +24,8 @@
     "/faq": Faq,
     "/returns": Returns,
     "/legals": Legals,
-    "/debug": Debug,
+    "/debug-image": DebugImage,
+    "/debug-model": DebugModel,
   };
 
   const getRoute = (path) => {
@@ -31,11 +33,12 @@
     if (path === "/products") return ProductList; // Liste des produits
     if (path.startsWith("/products/")) return ProductPage;
     if (path.startsWith("/configuration")) return Configuration;
-    if (path.startsWith("/debug")) return Debug;
+    if (path.startsWith("/debug-image")) return DebugImage;
     if (path.startsWith("/contact")) return Contact;
     if (path.startsWith("/faq")) return Faq;
     if (path.startsWith("/returns")) return Returns;
     if (path.startsWith("/legals")) return Legals;
+    if (path.startsWith("/debug-model")) return DebugModel;
 
     return NotFound;
   };

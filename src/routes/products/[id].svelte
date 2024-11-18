@@ -142,6 +142,15 @@
     max-height: 70dvh;
   }
 
+  model-viewer {
+    width: 100%;
+    height: 70dvh;
+    max-height: 70dvh;
+    background-color: var(--color-light);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 8px var(--color-shadow);
+  }
+
   .product-images {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
