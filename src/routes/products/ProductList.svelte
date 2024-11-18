@@ -1,9 +1,5 @@
 <script>
-  let products = [
-    { id: 1, name: "Produit 1", price: 100 },
-    { id: 2, name: "Produit 2", price: 200 },
-    { id: 3, name: "Produit 3", price: 300 },
-  ];
+  import products from "$data/products.json";
 </script>
 
 <h1>Liste des produits</h1>

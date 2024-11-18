@@ -142,15 +142,5 @@
       align-items: flex-start;
       gap: var(--space-lg);
     }
-
-    .newsletter form {
-      flex-direction: column;
-      gap: var(--space-sm);
-    }
-
-    .newsletter input[type="email"],
-    .newsletter button {
-      width: 100%;
-    }
   }
 </style>

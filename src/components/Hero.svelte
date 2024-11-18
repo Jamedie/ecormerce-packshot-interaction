@@ -1,8 +1,8 @@
 <script>
   import Chip from "./Chip.svelte";
   import { onMount } from "svelte";
+  import heroData from "$data/hero.json";
 
-  let heroData = [];
   let mainHeroImage = "";
 
   let currentHero = {};
@@ -13,9 +13,6 @@
 
   async function fetchHeroData() {
     try {
-      const res = await fetch("/data/hero.json");
-      if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
-      heroData = await res.json();
       mainHeroImage = heroData[0]?.image || "../assets/images/image1.jpg";
       currentHero = heroData.find((item) => item.image === mainHeroImage) || {};
       chips = currentHero.chips || [];
@@ -124,6 +121,7 @@
     position: relative;
     width: 100%;
     height: 100vh;
+    height: 100svh;
     background-size: cover;
     background-position: center;
   }

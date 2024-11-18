@@ -1,21 +1,8 @@
 <script>
-  import { onMount } from "svelte";
-
-  let sections = [];
-
-  onMount(async () => {
-    try {
-      const res = await fetch("../data/returns.json");
-      if (!res.ok)
-        throw new Error("Erreur lors du chargement des données de retour.");
-      sections = await res.json();
-    } catch (error) {
-      console.error("Erreur :", error);
-    }
-  });
+  import returns from "$data/returns.json";
 
   function toggleSection(index) {
-    sections[index].open = !sections[index].open;
+    returns[index].open = !returns[index].open;
   }
 </script>
 
@@ -27,7 +14,7 @@
   </p>
 
   <div class="policy-sections">
-    {#each sections as section, index}
+    {#each returns as section, index}
       <div class="policy-item">
         <button class="policy-title" on:click={() => toggleSection(index)}>
           {section.title}

@@ -1,17 +1,8 @@
 <script>
   import { onMount } from "svelte";
+  import faqs from "$data/faqs.json";
 
-  let faqs = [];
-
-  onMount(async () => {
-    try {
-      const res = await fetch("../data/faqs.json");
-      if (!res.ok) throw new Error("Erreur lors du chargement des FAQs.");
-      faqs = await res.json();
-    } catch (error) {
-      console.error("Erreur :", error);
-    }
-  });
+  onMount(async () => {});
 
   function toggleFaq(index) {
     faqs[index].open = !faqs[index].open;

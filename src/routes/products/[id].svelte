@@ -2,6 +2,8 @@
   import { onMount } from "svelte";
   import Header from "$components/Header.svelte";
   import Footer from "$components/Footer.svelte";
+  import products from "$data/products.json";
+
   let id;
   let productData = {};
   let loading = true;
@@ -11,12 +13,7 @@
     try {
       const urlParts = window.location.pathname.split("/");
       id = urlParts[urlParts.length - 1];
-      const res = await fetch("/data/products.json");
-      if (!res.ok) {
-        throw new Error("Erreur lors du chargement des données");
-      }
-      const products = await res.json();
-      productData = products.find((product) => product.id === +id);
+      productData = products.find((products) => products.id === +id);
 
       if (!productData) {
         window.location.href = "/404";
@@ -45,6 +42,13 @@
   {:else}
     <div class="product-page">
       <div class="main-content">
+        <div class="breadcrumbs">
+          <a href="/">Accueil</a>
+          <span>&nbsp;&nbsp;>&nbsp;&nbsp;</span>
+          <a href="/products">Produits</a>
+          <span>&nbsp;&nbsp;>&nbsp;&nbsp;</span>
+          <span>{productData.title}</span>
+        </div>
         {#if productData.modelUrl}
           <model-viewer
             src={productData.modelUrl}
@@ -123,6 +127,14 @@
     padding: calc(var(--header-height) + var(--space-lg)) var(--space-lg) 0
       var(--space-lg);
     margin: auto;
+  }
+
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    font-size: 14px;
+    color: var(--color-light);
   }
 
   .main-content {

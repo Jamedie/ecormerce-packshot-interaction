@@ -1,18 +1,9 @@
 <script>
   import { onMount } from "svelte";
   import Packshot from "./Packshot.svelte";
+  import galleryData from "$data/gallery.json";
 
-  let galleryData = [];
-
-  onMount(async () => {
-    try {
-      const res = await fetch("/data/gallery.json");
-      if (!res.ok) throw new Error("Erreur lors du chargement de la galerie.");
-      galleryData = await res.json();
-    } catch (error) {
-      console.error("Erreur :", error);
-    }
-  });
+  onMount(async () => {});
 
   function handleChipClick(productId) {
     window.location.href = `/product/${productId}`;

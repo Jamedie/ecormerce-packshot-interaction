@@ -35,7 +35,6 @@
   }
 
   .header-content {
-    padding: var(--space-xl);
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -52,13 +51,5 @@
     text-decoration: none;
     margin-left: 20px;
     font-size: 14px;
-  }
-
-  .header-nav .btn-buy-now {
-    background-color: #fff;
-    color: #000;
-    padding: 5px 10px;
-    border-radius: 5px;
-    font-weight: bold;
   }
 </style>
