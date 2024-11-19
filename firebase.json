@@ -2,6 +2,12 @@
   "hosting": {
     "public": "public",
     "site": "innovaition-outdoor",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
   }
 }

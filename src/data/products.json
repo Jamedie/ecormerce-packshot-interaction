@@ -36,7 +36,7 @@
     "price": 594,
     "deliveryTime": "3 Days",
     "pickupTime": "Today",
-    "image": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Ftable-basse-corde-tressee-diametre-50.jpg?alt=media",
+    "mainImage": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Ftable-basse-corde-tressee-diametre-50.jpg?alt=media",
     "dimensions": {
       "width": 80,
       "height": 90,
@@ -59,7 +59,7 @@
     "oldPrice": 756,
     "deliveryTime": "3 Days",
     "pickupTime": "Today",
-    "image": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FTeak_outdoor_lounge_salon_clubzetel.png?alt=media",
+    "mainImage": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FTeak_outdoor_lounge_salon_clubzetel.png?alt=media",
     "dimensions": {
       "width": 80,
       "height": 90,

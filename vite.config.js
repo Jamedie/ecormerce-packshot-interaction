@@ -9,17 +9,12 @@ export default defineConfig({
   publicDir: "public",
   server: {
     https: true,
-    host: "0.0.0.0",
-    port: 5173,
-    hmr: {
-      protocol: "wss",
-    },
   },
   resolve: {
     alias: {
       $routes: path.resolve(__dirname, "./src/routes"),
       $components: path.resolve(__dirname, "./src/components"),
-      $data: path.resolve(__dirname, "./src/data"), // Assurez-vous que le chemin est correct
+      $data: path.resolve(__dirname, "./src/data"),
       $assets: path.resolve(__dirname, "./src/assets"),
     },
   },

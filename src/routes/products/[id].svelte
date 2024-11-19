@@ -146,7 +146,7 @@
     object-fit: cover;
     border-radius: var(--border-radius-md);
     box-shadow: 0 4px 8px var(--color-shadow);
-    max-height: 70dvh;
+    height: 80dvh;
   }
 
   .model-viewer-container,

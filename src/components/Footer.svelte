@@ -20,7 +20,7 @@
     <div class="support">
       <h4>Support</h4>
       <ul>
-        <li><a href="/contact">Contactez-nous</a></li>
+        <li><a href="/contact">Contactez notre IA</a></li>
         <li><a href="/faq">FAQs</a></li>
         <li><a href="/returns">Expédition et retours</a></li>
         <li><a href="/legals">Mention legales</a></li>

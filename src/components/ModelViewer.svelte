@@ -45,13 +45,6 @@
     background-color: var(--color-light);
   }
 
-  .model-viewer canvas {
-    width: 100%;
-    height: 100%;
-    mask-image: radial-gradient(circle, black 99%, transparent 100%);
-    -webkit-mask-image: radial-gradient(circle, black 99%, transparent 100%);
-  }
-
   .loading-overlay {
     position: absolute;
     top: 0;
