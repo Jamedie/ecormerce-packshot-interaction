@@ -2,14 +2,13 @@
   import { onMount } from "svelte";
   import Header from "$components/Header.svelte";
   import Footer from "$components/Footer.svelte";
+  import ModelViewer from "$components/ModelViewer.svelte";
   import products from "$data/products.json";
 
   let id;
   let productData = {};
-  let loading = true;
 
-  onMount(async () => {
-    loading = true;
+  onMount(() => {
     try {
       const urlParts = window.location.pathname.split("/");
       id = urlParts[urlParts.length - 1];
@@ -20,77 +19,67 @@
       }
     } catch (error) {
       console.error("Product not found:", error.message);
-      window.location.href = "/404";
     }
-    loading = false;
   });
 </script>
 
 <Header />
 
 <main>
-  {#if loading}
-    <div class="loading-container">
-      <div class="loading-content">
-        <img
-          id="loading-spinner"
-          src="/images/spinner.gif"
-          alt="Chargement..." />
-        <p>Chargement...</p>
-      </div>
-    </div>
-  {:else}
-    <div class="product-page">
-      <div class="main-content">
-        <div class="breadcrumbs">
-          <a href="/">Accueil</a>
-          <span>&nbsp;&nbsp;>&nbsp;&nbsp;</span>
-          <a href="/products">Produits</a>
-          <span>&nbsp;&nbsp;>&nbsp;&nbsp;</span>
-          <span>{productData.title}</span>
+  <div class="breadcrumbs">
+    <a href="/">Accueil</a>
+    <span>&nbsp;&nbsp;>&nbsp;&nbsp;</span>
+    <a href="/products">Produits</a>
+    <span>&nbsp;&nbsp;>&nbsp;&nbsp;</span>
+    <span>{productData.title}</span>
+  </div>
+
+  <div class="product-page">
+    <div class="main-content">
+      <!-- Main Model or Image Viewer -->
+      {#if productData.modelUrl}
+        <div class="model-viewer-container">
+          <ModelViewer modelData={productData.modelUrl} />
         </div>
-        {#if productData.modelUrl}
-          <model-viewer
-            src={productData.modelUrl}
-            alt={productData.title}
-            ar
-            camera-controls
-            auto-rotate></model-viewer>
-        {:else}
+      {:else}
+        <div class="main-image-container">
           <img
             src={productData.mainImage}
             alt={productData.title}
             class="main-image" />
-        {/if}
-        <div class="product-images">
-          {#each productData.images as image}
-            <img src={image} alt={productData.title} class="product-image" />
-          {/each}
         </div>
+      {/if}
+
+      <!-- Progressive image loading for gallery -->
+      <div class="product-images">
+        {#each productData.images as image}
+          <img src={image} alt={productData.title} class="product-image" />
+        {/each}
+      </div>
+    </div>
+
+    <div class="sidebar">
+      <h2>{productData.title}</h2>
+      <p class="product-description">{productData.shortDescription}</p>
+      <div class="product-price">
+        <span class="product-price-value">{productData.price}</span>
+        <span class="product-price-currency">€</span>
       </div>
 
-      <div class="sidebar">
-        <h2>{productData.title}</h2>
-        <p class="product-description">{productData.shortDescription}</p>
-        <div class="product-price">
-          <span class="product-price-value">{productData.price}</span>
-          <span class="product-price-currency">€</span>
-        </div>
-
-        {#if productData.colors}
-          <div class="color-options">
-            <p><strong>Couleur</strong></p>
-            <div class="color-dots">
-              {#each productData.colors as color}
-                <span class="color-dot" style="background-color: #{color}"
-                ></span>
-              {/each}
-            </div>
+      {#if productData.colors}
+        <div class="color-options">
+          <p><strong>Couleur</strong></p>
+          <div class="color-dots">
+            {#each productData.colors as color}
+              <span class="color-dot" style="background-color: #{color}"></span>
+            {/each}
           </div>
-        {/if}
+        </div>
+      {/if}
 
-        <button class="btn-add-to-cart">Ajouter au panier</button>
+      <button class="btn-add-to-cart">Ajouter au panier</button>
 
+      {#if productData.dimensions}
         <div class="product-meta">
           <h3>Dimensions</h3>
           <p>
@@ -98,34 +87,39 @@
             {productData.dimensions.depth} cm
           </p>
         </div>
+      {/if}
 
-        {#if productData.deliveryInfo}
-          <div class="delivery-info">
-            <h3>Livraison</h3>
-            <p>{productData.deliveryInfo}</p>
-          </div>
-        {/if}
+      {#if productData.deliveryInfo}
+        <div class="delivery-info">
+          <h3>Livraison</h3>
+          <p>{productData.deliveryInfo}</p>
+        </div>
+      {/if}
 
-        {#if productData.features}
-          <div class="product-features">
-            <h3>Détails du produit</h3>
-            <p>{productData.features}</p>
-          </div>
-        {/if}
-      </div>
+      {#if productData.features}
+        <div class="product-features">
+          <h3>Détails du produit</h3>
+          <p>{productData.features}</p>
+        </div>
+      {/if}
     </div>
-  {/if}
+  </div>
 </main>
 
 <Footer />
 
 <style>
-  .product-page {
+  main {
     display: flex;
-    flex-direction: row;
-    gap: var(--space-lg);
+    flex-direction: column;
     padding: calc(var(--header-height) + var(--space-lg)) var(--space-lg) 0
       var(--space-lg);
+    gap: var(--space-lg);
+  }
+
+  .product-page {
+    display: flex;
+    gap: var(--space-lg);
     margin: auto;
   }
 
@@ -138,7 +132,8 @@
   }
 
   .main-content {
-    min-width: 70%;
+    width: 70%;
+    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: left;
@@ -154,21 +149,21 @@
     max-height: 70dvh;
   }
 
-  model-viewer {
+  .model-viewer-container,
+  .main-image-container {
+    position: relative;
     width: 100%;
-    height: 70dvh;
-    max-height: 70dvh;
-    background-color: var(--color-light);
+    height: 80dvh;
     border-radius: var(--border-radius-md);
     box-shadow: 0 4px 8px var(--color-shadow);
+    overflow: hidden;
+    background-color: var(--color-light);
   }
 
   .product-images {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Deux colonnes */
-    gap: 20px;
-    justify-items: center;
-    width: 100%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-sm);
   }
 
   .product-image {
@@ -184,6 +179,7 @@
 
   .sidebar {
     border-radius: var(--border-radius-md);
+    max-width: 30%;
     display: flex;
     flex-direction: column;
     gap: var(--space-lg);
@@ -280,10 +276,10 @@
       width: 100%;
     }
 
-    .main-image,
-    model-viewer {
+    .main-image {
       aspect-ratio: unset; /* Supprime le ratio sur les petits écrans si nécessaire */
     }
+
     .product-images {
       grid-template-columns: 1fr; /* Une seule colonne sur petit écran */
     }

@@ -5,14 +5,8 @@ import path from "path";
 
 export default defineConfig({
   plugins: [svelte(), mkcert()],
-  resolve: {
-    alias: {
-      $routes: path.resolve(__dirname, "./src/routes"),
-      $components: path.resolve(__dirname, "./src/components"),
-      $data: path.resolve(__dirname, "./src/data"), // Assurez-vous que le chemin est correct
-    },
-  },
-  root: "./src",
+  root: "src",
+  publicDir: "public",
   server: {
     https: true,
     host: "0.0.0.0",
@@ -21,11 +15,26 @@ export default defineConfig({
       protocol: "wss",
     },
   },
+  resolve: {
+    alias: {
+      $routes: path.resolve(__dirname, "./src/routes"),
+      $components: path.resolve(__dirname, "./src/components"),
+      $data: path.resolve(__dirname, "./src/data"), // Assurez-vous que le chemin est correct
+      $assets: path.resolve(__dirname, "./src/assets"),
+    },
+  },
   build: {
     outDir: "../public",
     rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
       input: {
-        index: path.resolve(__dirname, "./src/index.html"),
+        index: path.resolve(__dirname, "src/index.html"),
       },
     },
   },

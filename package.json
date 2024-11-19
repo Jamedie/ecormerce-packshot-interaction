@@ -16,6 +16,7 @@
     "svelte": "^5.1.12",
     "svelte-routing": "^2.13.0",
     "vite": "^5.4.10",
-    "vite-plugin-mkcert": "^1.17.6"
+    "vite-plugin-mkcert": "^1.17.6",
+    "wonder-model-viewer": "^1.3.3"
   }
 }
