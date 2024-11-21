@@ -20,6 +20,21 @@ export default defineConfig({
   },
   build: {
     outDir: "../public",
+    chunkFileNames: "js/[name].js",
+    //assetFileNames: `assets/[name].[ext]`,
+    assetFileNames: ({ name }) => {
+      if (/\.(gif|jpe?g|png|svg|webp)$/.test(name ?? "")) {
+        return "img/[name][extname]";
+      }
+
+      if (/\.css$/.test(name ?? "")) {
+        return "css/[name][extname]";
+      }
+
+      // default value
+      // ref: https://rollupjs.org/guide/en/#outputassetfilenames
+      return "img/[name][extname]";
+    },
     rollupOptions: {
       output: {
         manualChunks(id) {

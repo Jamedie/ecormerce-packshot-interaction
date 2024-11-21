@@ -29,8 +29,9 @@
   <div class="main-content">
     <h1>Découvrez nos meubles</h1>
     <p>
-      Une collection de meubles conçue pour allier confort et style, adaptée à
-      tous vos besoins.
+      Une collection de meubles qui ne se contente pas de meubler votre maison,<br />
+      mais qui raconte une histoire, enrichit votre quotidien et, grâce à l'intelligence
+      artificielle,<br /> reflète parfaitement votre personnalité unique et vos besoins.
     </p>
     <div class="cover-image-container">
       <img
