@@ -15,6 +15,7 @@
       "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fanonyme-fauteuil.jpg?alt=media",
       "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fanonyme-fauteuil.jpg?alt=media"
     ],
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FFauteuil%20circa%201950.webp?alt=media",
     "dimensions": {
       "width": 90,
       "height": 77,
@@ -37,6 +38,7 @@
     "deliveryTime": "3 Days",
     "pickupTime": "Today",
     "mainImage": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Ftable-basse-corde-tressee-diametre-50.jpg?alt=media",
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FTable%20basse%20de%20salon%20de%20jardin%20en%20corde%20tress%C3%A9e.webp?alt=media",
     "dimensions": {
       "width": 80,
       "height": 90,
@@ -60,6 +62,7 @@
     "deliveryTime": "3 Days",
     "pickupTime": "Today",
     "mainImage": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FTeak_outdoor_lounge_salon_clubzetel.png?alt=media",
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FPremium%20Leather%20Armchair.webp?alt=media",
     "dimensions": {
       "width": 80,
       "height": 90,

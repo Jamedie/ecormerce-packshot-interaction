@@ -114,12 +114,12 @@
     flex-direction: column;
     padding: calc(var(--header-height) + var(--space-lg)) var(--space-lg) 0
       var(--space-lg);
-    gap: var(--space-lg);
+    gap: var(--space-sm);
   }
 
   .product-page {
     display: flex;
-    gap: var(--space-lg);
+    gap: var(--space-sm);
     margin: auto;
   }
 
@@ -137,7 +137,7 @@
     display: flex;
     flex-direction: column;
     align-items: left;
-    gap: var(--space-lg);
+    gap: var(--space-sm);
   }
 
   .main-image {
