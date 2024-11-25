@@ -1,4 +1,6 @@
 <script>
+  import Header from "$components/Header.svelte";
+  import Footer from "$components/Footer.svelte";
   let name = "";
   let email = "";
   let message = "";
@@ -24,47 +26,61 @@
   }
 </script>
 
-<main class="contact-page">
-  <h1>Contactez-nous</h1>
-  <p>
-    Vous avez une question ou souhaitez en savoir plus sur nos services ?
-    Remplissez le formulaire ci-dessous.
-  </p>
+<Header />
+<main>
+  <div class="contact-page">
+    <h1>Contactez-nous</h1>
+    <p>
+      Vous avez une question ou souhaitez en savoir plus sur nos services ?
+      Remplissez le formulaire ci-dessous.
+    </p>
 
-  <form on:submit={handleSubmit}>
-    <div class="form-group">
-      <label for="name">Nom</label>
-      <input type="text" id="name" bind:value={name} placeholder="Votre nom" />
-    </div>
+    <form on:submit={handleSubmit}>
+      <div class="form-group">
+        <label for="name">Nom</label>
+        <input
+          type="text"
+          id="name"
+          bind:value={name}
+          placeholder="Votre nom" />
+      </div>
 
-    <div class="form-group">
-      <label for="email">Email</label>
-      <input
-        type="email"
-        id="email"
-        bind:value={email}
-        placeholder="Votre adresse email" />
-    </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          bind:value={email}
+          placeholder="Votre adresse email" />
+      </div>
 
-    <div class="form-group">
-      <label for="message">Message</label>
-      <textarea id="message" bind:value={message} placeholder="Votre message"
-      ></textarea>
-    </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" bind:value={message} placeholder="Votre message"
+        ></textarea>
+      </div>
 
-    {#if errorMessage}
-      <p class="error-message">{errorMessage}</p>
-    {/if}
+      {#if errorMessage}
+        <p class="error-message">{errorMessage}</p>
+      {/if}
 
-    {#if successMessage}
-      <p class="success-message">{successMessage}</p>
-    {/if}
+      {#if successMessage}
+        <p class="success-message">{successMessage}</p>
+      {/if}
 
-    <button type="submit">Envoyer</button>
-  </form>
+      <button type="submit">Envoyer</button>
+    </form>
+  </div>
 </main>
+<Footer />
 
 <style>
+  main {
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--header-height) + var(--space-lg)) var(--space-lg) 0;
+  }
+
   .contact-page {
     max-width: 600px;
     margin: 0 auto;
@@ -72,6 +88,9 @@
     background-color: var(--color-bg-light);
     border-radius: var(--border-radius-md);
     box-shadow: 0 4px 8px var(--color-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
   }
 
   h1 {

@@ -78,9 +78,11 @@
 
 ### Utilisation de ModelViewer.svelte
 
+```
 <script>
   import ModelViewer from "$components/ModelViewer.svelte";
   let modelUrl = "https://example.com/model.glb";
 </script>
 
 <ModelViewer {modelUrl} />
+```
