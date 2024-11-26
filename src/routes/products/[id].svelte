@@ -21,6 +21,13 @@
       console.error("Product not found:", error.message);
     }
   });
+
+  function handleAddToCart() {
+    console.log("Add to cart");
+    window.umami.track("add_to_cart", {
+      product_id: productData.id,
+    });
+  }
 </script>
 
 <Header />
@@ -77,7 +84,8 @@
         </div>
       {/if}
 
-      <button class="btn-add-to-cart">Ajouter au panier</button>
+      <button class="btn-add-to-cart" on:click={handleAddToCart}
+        >Ajouter au panier</button>
 
       {#if productData.dimensions}
         <div class="product-meta">

@@ -16,6 +16,27 @@
       },
     });
   });
+
+  async function handleAddToCart() {
+    const response = await fetch("/sendEmail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to: "test@example.com",
+        subject: "Test Email",
+        message: "This is a test email!",
+      }),
+    });
+
+    const result = await response.json();
+    if (response.ok) {
+      console.log("Succès :", result.message);
+    } else {
+      console.error("Erreur :", result.error, result.message);
+    }
+  }
 </script>
 
 <section class="configurator">
@@ -42,6 +63,9 @@
       </select>
     </label>
   </div>
+
+  <button class="btn-add-to-cart" on:click={handleAddToCart}
+    >Ajouter au panier</button>
 </section>
 
 <style>

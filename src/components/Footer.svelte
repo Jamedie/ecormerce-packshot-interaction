@@ -2,6 +2,129 @@
   function navigate(url) {
     window.location.href = url; // Redirection vers l'URL spécifiée
   }
+
+  const emailTemplates = [
+    {
+      subject: "Bienvenue chez Wonder-Shop ! 🌟",
+      message: `
+      Bonjour,
+
+      Merci de vous être inscrit à notre newsletter ! 🎉
+      Chez Wonder-Shop, nous croyons que chaque maison mérite des meubles qui racontent une histoire. 
+
+      Découvrez nos dernières collections et profitez d'offres exclusives en tant que membre de notre communauté.
+
+      À très bientôt !
+
+      L'équipe Wonder-Shop 🛋️
+      Explorez notre univers : https://innovaition-outdoor.web.app/
+    `,
+    },
+    {
+      subject: "Votre aventure avec Wonder-Shop commence ici ! ✨",
+      message: `
+      Bonjour,
+
+      Nous sommes ravis de vous compter parmi nous. 🌟
+
+      Imaginez des meubles qui ne se contentent pas de décorer votre intérieur, mais qui enrichissent chaque moment passé chez vous. C’est notre mission : apporter confort, style et émotions dans votre quotidien.
+
+      Restez à l'écoute pour découvrir nos nouveautés, nos inspirations et des offres créées rien que pour vous. 🌿
+
+      Merci pour votre confiance,
+      L'équipe Wonder-Shop
+      Votre voyage commence ici : https://innovaition-outdoor.web.app/
+    `,
+    },
+    {
+      subject: "Vous êtes désormais un membre exclusif de Wonder-Shop ! 🏆",
+      message: `
+      Bonjour,
+
+      Félicitations ! 🎉 Vous venez de rejoindre l'univers Wonder-Shop.
+
+      En tant que membre, vous accédez à :
+      - Des avant-premières sur nos nouvelles collections.
+      - Des conseils exclusifs pour sublimer votre intérieur.
+      - Des offres spéciales réservées à notre communauté.
+
+      Préparez-vous à réinventer votre espace de vie avec des meubles d'exception.
+
+      Bienvenue dans notre monde,
+      L'équipe Wonder-Shop
+      Découvrez l'inspiration : https://innovaition-outdoor.web.app/
+    `,
+    },
+    {
+      subject: "Breaking News : Vous êtes officiellement stylé ! 📰",
+      message: `
+      Bonjour,
+
+      On a une grande nouvelle : votre boîte mail est sur le point de devenir 200% plus stylée. 🎨
+
+      Wonder-Shop débarque avec des meubles qui ont autant de personnalité que vous. Préparez-vous à :
+      - Décorer votre maison sans prise de tête.
+      - Recevoir des tendances et des offres qui rendent jaloux vos voisins.
+
+      Vous êtes prêt ? Parce que nous, on l'est !
+
+      L'équipe Wonder-Shop (toujours prête à impressionner)
+      Venez voir par vous-même : https://innovaition-outdoor.web.app/
+    `,
+    },
+    {
+      subject: "Merci de nous faire confiance 🛋️",
+      message: `
+      Bonjour,
+
+      Merci d'avoir rejoint Wonder-Shop. Nous sommes impatients de partager nos meilleures idées et nos collections exclusives avec vous.
+
+      À très bientôt,
+      L'équipe Wonder-Shop
+      https://innovaition-outdoor.web.app
+    `,
+    },
+  ];
+
+  function getRandomTemplate() {
+    const randomIndex = Math.floor(Math.random() * emailTemplates.length);
+    return emailTemplates[randomIndex];
+  }
+
+  let email = "";
+  let errorMessage = "";
+  let successMessage = "";
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+
+    if (!email) {
+      errorMessage = "Veuillez remplir l'adresse e-mail.";
+      return;
+    }
+
+    window.umami.track("subscribe newsletter", {
+      email: email,
+    });
+
+    const response = await fetch("/sendEmail", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        to: email,
+        subject: getRandomTemplate().subject,
+        message: getRandomTemplate().message,
+      }),
+    });
+
+    const result = await response.json();
+
+    // Envoi de l'email
+    const form = document.getElementById("newsletter-form");
+    form.reset();
+  }
 </script>
 
 <footer>
@@ -34,10 +157,17 @@
         dénicher pour vous les tendances de demain.
       </p>
       <p>Un clic suffit pour rejoindre la révolution Wonder-Shop !</p>
-      <form>
-        <input type="email" placeholder="Adresse e-mail" />
-        <button type="submit">S'abonner</button>
+      <form id="newsletter-form">
+        <input type="email" placeholder="Adresse e-mail" bind:value={email} />
+        <button type="submit" id="newsletter-submit" on:click={handleSubmit}>
+          S'abonner</button>
       </form>
+      {#if errorMessage}
+        <p class="error-message">{errorMessage}</p>
+      {/if}
+      {#if successMessage}
+        <p class="success-message">{successMessage}</p>
+      {/if}
     </div>
   </div>
 </footer>
@@ -55,12 +185,12 @@
     flex-direction: column;
     min-width: 200px;
     max-width: 30%;
+    gap: var(--space-xs);
   }
 
   footer h4 {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: var(--space-sm);
     color: var(--color-primary);
   }
 
@@ -72,12 +202,14 @@
   .support {
     display: flex;
     flex-direction: column;
+    gap: var(--space-xs);
   }
 
   #newsletter {
     min-width: 400px;
     display: flex;
     flex-direction: column;
+    gap: var(--space-xs);
   }
 
   .footer-links-section ul li a {
@@ -94,7 +226,6 @@
     display: flex;
     gap: var(--space-sm);
     justify-content: flex-end; /* Aligne le formulaire à droite */
-    margin-top: var(--space-md);
   }
 
   .footer-links-section input[type="email"] {
@@ -129,6 +260,16 @@
     display: flex;
     flex-direction: column; /* Mise en colonne */
     gap: var(--space-sm);
+  }
+
+  .error-message {
+    color: var(--color-error);
+    font-weight: bold;
+  }
+
+  .success-message {
+    color: var(--color-success);
+    font-weight: bold;
   }
 
   @media (max-width: 768px) {
