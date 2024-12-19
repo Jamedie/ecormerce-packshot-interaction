@@ -44,9 +44,9 @@
   <div class="product-page">
     <div class="main-content">
       <!-- Main Model or Image Viewer -->
-      {#if productData.modelUrl}
+      {#if productData.modelData}
         <div class="model-viewer-container">
-          <ModelViewer modelData={productData.modelUrl} />
+          <ModelViewer modelData={productData.modelData} />
         </div>
       {:else}
         <div class="main-image-container">
@@ -107,7 +107,11 @@
       {#if productData.features}
         <div class="product-features">
           <h3>Détails du produit</h3>
-          <p>{productData.features}</p>
+          <ul>
+            {#each productData.features as feature}
+              <li class="feature-item">{feature}</li>
+            {/each}
+          </ul>
         </div>
       {/if}
     </div>
@@ -211,6 +215,7 @@
     font-size: 16px;
     color: var(--color-light);
     line-height: 1.5;
+    white-space: pre-wrap;
   }
 
   .product-price {
@@ -220,6 +225,27 @@
     display: flex;
     align-items: baseline;
     gap: 5px;
+  }
+
+  .product-features ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .feature-item {
+    display: inline-flex;
+    border: 2px solid var(--color-light);
+    padding: 0.3rem 0.5rem;
+    border-radius: var(--border-radius-md);
+    font-size: 16px;
+    line-height: 1.2;
+    width: fit-content;
+    background-color: var(--color-bg);
+    box-sizing: border-box;
   }
 
   .btn-add-to-cart {

@@ -32,7 +32,7 @@
     on:click={getClickPosition}
     aria-label="Cliquez sur l'image">
     <img
-      src="https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FNouveauxHorizons_Zone05.jpg?alt=media"
+      src="https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FAlinea_Products.jpg?alt=media"
       alt="Packshot"
       on:load={onImageLoad} />
   </button>

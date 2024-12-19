@@ -75,5 +75,113 @@
       "Tapered Wooden Legs",
       "Deep-Seated Cushions"
     ]
+  },
+  {
+    "id": 27779910,
+    "title": "Canapé 3 places en tissu, COLINE",
+    "shortDescription": "Canapé contemporain fabriqué en France,offrant confort exceptionnel et design élégant avec piétement en acier noir.",
+    "longDescription": "Un canapé au look contemporain et accueillant,\n sublimé par un piétement original en acier noir. Vous apprécierez la forme du dossier et des accoudoirs qui vous offrent un maintien optimal de votre dos pour un confort d'assise exceptionnel. Un canapé fabriqué en France, dans des ateliers proches de la ville de Bourge, qui incarne l'excellence du savoir-faire français.",
+    "price": 1099,
+    "deliveryTime": "3 Days",
+    "pickupTime": "Today",
+    "mainImage": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FTeak_outdoor_lounge_salon_clubzetel.png?alt=media",
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27779910%2F27779910_B1.jpg?alt=media",
+    "images": [
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27779910%2F27779910_B1.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27779910%2F27779910_B5.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27779910%2F27779910_F1.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27779910%2F27779910_Z2.jpg?alt=media"
+    ],
+    "dimensions": {
+      "width": 223,
+      "height": 86,
+      "depth": 104
+    },
+    "features": [
+      "Tissu de qualité supérieure",
+      "Design ergonomique et confortable",
+      "Revêtement résistant aux taches",
+      "Pieds en métal élégant",
+      "Coussins profonds et moelleux"
+    ],
+    "modelData": {
+      "sceneConfig": {
+        "camera": {
+          "id": "camera_default",
+          "isDefault": true,
+          "camera": {
+            "type": 1,
+            "near": 0.02725613859569481,
+            "far": 272.5613859569481,
+            "fov": 32,
+            "aspect": 1
+          },
+          "position": {
+            "x": -1.8413114768577363,
+            "y": 0.9861004410752322,
+            "z": 3.931662036009035
+          }
+        },
+        "background": { "color": "#ffffff" }
+      },
+      "model": {
+        "id": "27779910",
+        "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27779910%2F27779910_colinne.glb?alt=media",
+        "type": "gltfModel"
+      },
+      "annotations": [
+        {
+          "localPosition": {
+            "x": -1.0197114383611134,
+            "y": -0.4262556139197905,
+            "z": 0.12225177777306667
+          },
+          "worldPosition": {
+            "x": -1.0197114383611134,
+            "y": -0.4262556139197905,
+            "z": 0.12225177777306667
+          },
+          "target": "SM_27779910_M_27779910_BlackMetal_0",
+          "text": {
+            "fr": { "title": "Pieds", "description": "Pieds en métal élégant" }
+          }
+        },
+        {
+          "localPosition": {
+            "x": -0.08133557117986756,
+            "y": -0.00991127787891033,
+            "z": 0.7713635772786772
+          },
+          "worldPosition": {
+            "x": -0.08133557117986756,
+            "y": -0.00991127787891033,
+            "z": 0.7713635772786772
+          },
+          "target": "SM_27779910_M_27779910_Fabric_0_2",
+          "text": {
+            "fr": {
+              "title": "Coussins",
+              "description": "Coussins profonds et moelleux"
+            }
+          }
+        },
+        {
+          "localPosition": {
+            "x": 0.4078025730979819,
+            "y": -0.4095234791586875,
+            "z": 0.5023988152525504
+          },
+          "worldPosition": {
+            "x": 0.4078025730979819,
+            "y": -0.4095234791586875,
+            "z": 0.5023988152525504
+          },
+          "target": "SM_27779910_M_27779910_Fabric_0",
+          "text": {
+            "fr": { "title": "Tissu de qualité supérieure", "description": "" }
+          }
+        }
+      ]
+    }
   }
 ]

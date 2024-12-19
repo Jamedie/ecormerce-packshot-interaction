@@ -8,18 +8,16 @@
 
   onMount(() => {
     loading = true;
+
+    console.log(modelData);
     if (modelData) {
       let container = document.querySelector(".model-viewer");
-      modelViewer = new WonderModelViewer(container, {
-        model: {
-          src: modelData,
-          type: "gltfModel",
-        },
-      });
+      modelViewer = new WonderModelViewer(container, modelData);
 
       modelViewer.addEventListener("modelInitialized", () => {
         console.log("modelInitialized");
         loading = false;
+        console.log(modelViewer.model);
       });
     }
 
@@ -32,14 +30,27 @@
   });
 </script>
 
-<div class="loading-overlay" class:hidden={!loading}>
-  <p>Chargement du modèle...</p>
+<div class="model-viewer-wrapper">
+  <div class="loading-overlay" class:hidden={!loading}>
+    <p>Chargement du modèle...</p>
+  </div>
+  <div class="model-viewer"></div>
 </div>
-<div class="model-viewer"></div>
 
 <style>
+  .model-viewer-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16/9;
+    min-height: 500px;
+  }
   .model-viewer {
-    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: 100%;
     background-color: var(--color-light);
@@ -59,6 +70,14 @@
     font-weight: bold;
     color: var(--color-dark);
     z-index: 2;
+  }
+
+  .annotation-Container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   .hidden {

@@ -21,15 +21,16 @@
   },
   {
     "image": {
-      "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fimage6.jpg?alt=media&",
+      "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FAlinea_Products.jpg?alt=media",
       "ratio": "16/9",
-      "alt": "Packshot 5",
+      "alt": "Alinea Products",
       "size": 4,
       "height": 4
     },
     "chips": [
-      { "left": 44, "top": 51, "price": 499, "productId": 105 },
-      { "left": 85, "top": 61, "price": 149, "productId": 106 }
+      { "left": 69, "top": 59, "price": 1099, "productId": 27779910 },
+      { "left": 54, "top": 89, "price": 149, "productId": 106 },
+      { "left": 20, "top": 51, "price": 149, "productId": 107 }
     ]
   },
   {
