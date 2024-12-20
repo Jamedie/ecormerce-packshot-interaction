@@ -9,7 +9,6 @@
   onMount(() => {
     loading = true;
 
-    console.log(modelData);
     if (modelData) {
       let container = document.querySelector(".model-viewer");
       modelViewer = new WonderModelViewer(container, modelData);
@@ -17,7 +16,6 @@
       modelViewer.addEventListener("modelInitialized", () => {
         console.log("modelInitialized");
         loading = false;
-        console.log(modelViewer.model);
       });
     }
 

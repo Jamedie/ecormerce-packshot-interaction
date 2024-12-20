@@ -132,7 +132,6 @@
   .product-page {
     display: flex;
     gap: var(--space-sm);
-    margin: auto;
   }
 
   .breadcrumbs {
@@ -144,6 +143,7 @@
   }
 
   .main-content {
+    min-width: 70%;
     width: 70%;
     flex: 1;
     display: flex;
