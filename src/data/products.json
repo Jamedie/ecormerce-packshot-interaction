@@ -7,7 +7,6 @@
     "price": 350,
     "deliveryTime": "3 Days",
     "pickupTime": "Today",
-    "modelUrl": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fmodels%2Fsofa_-_classic_furniture_set..glb?alt=media",
     "mainImage": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2FTeak_outdoor_lounge_salon_clubzetel.png?alt=media",
     "images": [
       "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fimages%2Fanonyme-fauteuil.jpg?alt=media",
@@ -27,7 +26,33 @@
       "Stain-resistant Upholstery",
       "Tapered Wooden Legs",
       "Deep-Seated Cushions"
-    ]
+    ],
+    "modelData": {
+      "sceneConfig": {
+        "camera": {
+          "id": "camera_default",
+          "isDefault": true,
+          "camera": {
+            "type": 1,
+            "near": 0.0001,
+            "far": 10000,
+            "fov": 32,
+            "aspect": 1
+          },
+          "position": {
+            "x": -197.69663491377665,
+            "y": 215.48010859376342,
+            "z": 469.98737087161265
+          }
+        },
+        "background": { "color": "#ffffff" }
+      },
+      "model": {
+        "id": "Fauteuil_circa_1950",
+        "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fmodels%2Fsofa_-_classic_furniture_set..glb?alt=media",
+        "type": "gltfModel"
+      }
+    }
   },
   {
     "id": 102,
@@ -93,16 +118,16 @@
       "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27779910%2F27779910_Z2.jpg?alt=media"
     ],
     "dimensions": {
-      "width": 223,
-      "height": 86,
-      "depth": 104
+      "width": 180,
+      "height": 46,
+      "depth": 85
     },
     "features": [
-      "Tissu de qualité supérieure",
-      "Design ergonomique et confortable",
-      "Revêtement résistant aux taches",
-      "Pieds en métal élégant",
-      "Coussins profonds et moelleux"
+      "Bois massif de haute qualité",
+      "Design minimaliste et intemporel",
+      "Poignées intégrées pour une esthétique épurée",
+      "Structure robuste et durable",
+      "Grand espace de rangement avec portes coulissantes"
     ],
     "modelData": {
       "sceneConfig": {
@@ -182,6 +207,116 @@
           }
         }
       ]
+    }
+  },
+  {
+    "id": 27660287,
+    "title": "LURS",
+    "shortDescription": "Buffet 4 portes en chêne - bois clair.",
+    "longDescription": "Buffet de salon en bois de chêne\nD'une beauté brute, ce buffet en bois intègre votre salon avec élégance. Ce buffet bas est confectionné en bois de chêne massif. Ce buffet 4 portes et 4 niches est idéal pour ranger de la vaisselle et du linge de maison. Votre intérieur reste bien ordonné tout en bénéficiant d'un espace décoratif supplémentaire : ornez le plateau de quelques objets déco - vases, livres, bougies, plantes, coupes... - pour un meuble de salon qui vous ressemble.",
+    "price": 999,
+    "deliveryTime": "3 Days",
+    "pickupTime": "Today",
+    "mainImage": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2FLURS_27660287.jpg?alt=media",
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2FLURS_27660287.jpg?alt=media",
+    "images": [
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2F27660287_F1.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2F27660287_B2.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2F27660287_B1.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2F27660287_B5.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2F27660287_Z1.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2F27660287_Z2.jpg?alt=media"
+    ],
+    "dimensions": {
+      "width": 223,
+      "height": 86,
+      "depth": 104
+    },
+    "features": [
+      "Tissu de qualité supérieure",
+      "Design ergonomique et confortable",
+      "Revêtement résistant aux taches",
+      "Pieds en métal élégant",
+      "Coussins profonds et moelleux"
+    ],
+    "modelData": {
+      "sceneConfig": {
+        "camera": {
+          "id": "camera_default",
+          "isDefault": true,
+          "camera": {
+            "type": 1,
+            "near": 0.0001,
+            "far": 10000,
+            "fov": 32,
+            "aspect": 1
+          },
+          "position": {
+            "x": -0.9438635068628872,
+            "y": 0.23964321975057457,
+            "z": 2.3477991609491267
+          }
+        },
+        "background": { "color": "#ffffff" }
+      },
+      "model": {
+        "id": "27660287_LURS",
+        "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27660287%2F27660287_LURS.glb?alt=media&token=cb1e0f89-8ccb-4ade-a1c4-c4583e68c3bd",
+        "type": "gltfModel"
+      }
+    }
+  },
+  {
+    "id": 27883716,
+    "title": "X-CESARE TABLE BASSE NATUREL",
+    "shortDescription": "Table basse en bois et céramique - design minimaliste.",
+    "longDescription": "Apportez une touche contemporaine à votre intérieur avec cette table basse unique. Son plateau en bois massif naturel offre une chaleur authentique, tandis que sa base en céramique blanche confère une stabilité et une élégance modernes. Parfaite pour les salons épurés, cette table basse s'intègre harmonieusement dans divers styles d'aménagement. Utilisez-la pour poser vos livres, vos tasses ou même des objets décoratifs pour sublimer votre espace de vie.",
+    "price": 359,
+    "deliveryTime": "3 Days",
+    "pickupTime": "Today",
+    "mainImage": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27883716%2F27883716_B1.jpg?alt=media",
+    "thumbnail": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27883716%2F27883716_B1.jpg?alt=media",
+    "images": [
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27883716%2F27883716_B1.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27883716%2F27883716_Z1.jpg?alt=media",
+      "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27883716%2F27883716_F1.jpg?alt=media"
+    ],
+    "dimensions": {
+      "width": 90,
+      "height": 41
+    },
+    "features": [
+      "Plateau en bois massif naturel",
+      "Base en céramique élégante et robuste",
+      "Design minimaliste et contemporain",
+      "Surface résistante aux rayures et aux taches",
+      "Idéal pour les espaces modernes et épurés"
+    ],
+    "modelData": {
+      "sceneConfig": {
+        "camera": {
+          "id": "camera_default",
+          "isDefault": true,
+          "camera": {
+            "type": 1,
+            "near": 0.0001,
+            "far": 10000,
+            "fov": 32,
+            "aspect": 1
+          },
+          "position": {
+            "x": -1.8365475312644912,
+            "y": 0.4123447809973128,
+            "z": 0.9371497978001297
+          }
+        },
+        "background": { "color": "#ffffff" }
+      },
+      "model": {
+        "id": "27883716",
+        "src": "https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2FProducts%2F27883716%2F27883716.glb?alt=media&token=427670f7-a98a-4f81-adb1-7260ebb7dba5",
+        "type": "gltfModel"
+      }
     }
   }
 ]
