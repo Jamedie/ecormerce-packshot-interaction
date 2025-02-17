@@ -251,9 +251,10 @@
   .btn-add-to-cart {
     background-color: var(--color-primary);
     color: var(--color-light);
-    padding: 10px 15px;
+    padding: 10px 10px;
     border: 2px solid transparent; /* Bordure transparente par défaut */
     border-radius: var(--border-radius-md);
+    max-width: 400px;
     cursor: pointer;
     font-weight: bold;
     text-align: center;

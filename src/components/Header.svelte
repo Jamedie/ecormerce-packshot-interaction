@@ -23,7 +23,10 @@
     <nav class="header-nav">
       <a href="#newsletter">Sign up to Newsletter</a>
       <a href="/basket">
-        <img src="assets/icons/basket-icon.svg" id="basket-icon" alt="Basket" />
+        <img
+          src="/assets/icons/basket-icon.svg"
+          id="basket-icon"
+          alt="Basket" />
       </a>
     </nav>
   </div>

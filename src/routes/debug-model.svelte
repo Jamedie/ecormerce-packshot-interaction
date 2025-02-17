@@ -2,12 +2,21 @@
 </script>
 
 <main>
+  <!-- Importez le composant -->
+  <script
+    type="module"
+    src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+  <!-- Utilisez-le comme n'importe quel autre élément HTML -->
   <model-viewer
-    alt="Neil Armstrong's Spacesuit from the Smithsonian Digitization Programs Office and National Air and Space Museum"
-    src="https://firebasestorage.googleapis.com/v0/b/jimmy-webar.appspot.com/o/ecomerce-packshot-interaction%2Fmodels%2FBackpack.glb?alt=media"
+    src="https://modelviewer.dev/shared-assets/models/Astronaut.glb"
+    alt="Un modèle 3D d'un astronaute"
     ar
+    ar-modes="scene-viewer quick-look"
     camera-controls
-    touch-action="pan-y"></model-viewer>
+    touch-action="pan-y"
+    style="width: 100%; height: 500px;">
+  </model-viewer>
 </main>
 
 <style>
