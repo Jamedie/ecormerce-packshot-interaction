@@ -31,3 +31,4 @@ dist-ssr
 !.env.example
 functions/.env
 functions/.env.*
+functions/.secret.local
