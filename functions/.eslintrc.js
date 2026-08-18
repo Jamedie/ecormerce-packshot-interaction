@@ -1,4 +1,5 @@
 module.exports = {
+  root: true,
   env: {
     es6: true,
     node: true,
@@ -8,6 +9,8 @@ module.exports = {
   },
   extends: ["airbnb-base"],
   rules: {
+    "linebreak-style": "off",
+    "import/no-unresolved": ["error", { ignore: ["^firebase-functions/"] }],
     "no-restricted-globals": ["error", "name", "length"],
     "prefer-arrow-callback": "error",
     quotes: ["error", "double", { allowTemplateLiterals: true }],
