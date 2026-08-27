@@ -1,38 +1,111 @@
 <script>
-  import { onMount } from "svelte";
-  import WonderModelViewer from "wonder-model-viewer";
+	import { onMount } from "svelte";
+	import WonderModelViewer from "wonder-model-viewer";
+	import "wonder-model-viewer/styles.css";
 
-  export let modelData;
-  let modelViewer;
-  let loading = true;
+	export let modelData;
 
-  onMount(() => {
-    loading = true;
+	let container;
+	let modelViewer;
+	let loading = true;
 
-    if (modelData) {
-      let container = document.querySelector(".model-viewer");
-      modelViewer = new WonderModelViewer(container, modelData);
+	onMount(() => {
+		if (!container || !modelData?.model?.src) {
+			loading = false;
+			return;
+		}
 
-      modelViewer.addEventListener("modelInitialized", () => {
-        console.log("modelInitialized");
-        loading = false;
-      });
-    }
+		loading = true;
 
-    return () => {
-      // Nettoyer l'écouteur si le composant est détruit
-      document.removeEventListener("modelInitialized", () => {
-        console.log("remove event");
-      });
-    };
-  });
+		const environmentPath = modelData.sceneConfig?.environment?.src;
+		const environmentType = /\.exr(?:[?#]|$)/i.test(
+			environmentPath ?? "",
+		)
+			? "exr"
+			: "hdr";
+
+		const sources = environmentPath
+			? [
+					{
+						name: "environmentMapHDR",
+						type: environmentType,
+						path: environmentPath,
+					},
+				]
+			: [];
+
+		modelViewer = new WonderModelViewer(container, {
+			sources,
+			loadingScreen: false,
+		});
+
+		const unsubscribeLoaded = modelViewer.on(
+			"model:loaded",
+			({ id }) => {
+				console.log(`Model "${id}" loaded`);
+				loading = false;
+			},
+		);
+
+		const unsubscribeError = modelViewer.on(
+			"model:error",
+			({ message }) => {
+				console.error(message);
+				loading = false;
+			},
+		);
+
+		const unsubscribeReady = modelViewer.on("viewer:ready", () => {
+			modelViewer
+				.loadModel({
+					id: modelData.model.id ?? "main",
+					source: modelData.model.src,
+
+					animations:
+						modelData.model.animations ?? true,
+
+					autoplayAnimation:
+						modelData.model.autoplayAnimation ?? true,
+
+					animationUI:
+						modelData.model.animationUI ??
+						modelData.sceneConfig?.modelAnimationsUI ??
+						false,
+
+					modelInformations:
+						modelData.informations ??
+						modelData.sceneConfig?.modelInformations ??
+						false,
+
+					annotations: modelData.annotations,
+
+					annotationOptions: {
+						occlusion: true,
+						occlusionChecksPerFrame: 1,
+					},
+				})
+				.catch(() => {
+					loading = false;
+				});
+		});
+
+		return () => {
+			unsubscribeReady();
+			unsubscribeLoaded();
+			unsubscribeError();
+
+			modelViewer.destroy();
+			modelViewer = undefined;
+		};
+	});
 </script>
 
 <div class="model-viewer-wrapper">
-  <div class="loading-overlay" class:hidden={!loading}>
-    <p>Chargement du modèle...</p>
-  </div>
-  <div class="model-viewer"></div>
+	<div class="loading-overlay" class:hidden={!loading}>
+		<p>Chargement du modèle...</p>
+	</div>
+
+	<div class="model-viewer" bind:this={container}></div>
 </div>
 
 <style>
@@ -70,12 +143,8 @@
     z-index: 2;
   }
 
-  .annotation-Container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+  .loading-overlay p {
+    color: var(--color-dark);
   }
 
   .hidden {
