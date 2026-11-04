@@ -12,10 +12,10 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      $routes: path.resolve(__dirname, "./src/routes"),
-      $components: path.resolve(__dirname, "./src/components"),
-      $data: path.resolve(__dirname, "./src/data"),
-      $assets: path.resolve(__dirname, "./src/assets"),
+      $routes: path.resolve(import.meta.dirname, "./src/routes"),
+      $components: path.resolve(import.meta.dirname, "./src/components"),
+      $data: path.resolve(import.meta.dirname, "./src/data"),
+      $assets: path.resolve(import.meta.dirname, "./src/assets"),
     },
   },
   build: {
@@ -44,7 +44,7 @@ export default defineConfig({
         },
       },
       input: {
-        index: path.resolve(__dirname, "src/index.html"),
+        index: path.resolve(import.meta.dirname, "src/index.html"),
       },
     },
   },

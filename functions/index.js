@@ -1,4 +1,5 @@
 const { onRequest } = require("firebase-functions/v2/https");
+const logger = require("firebase-functions/logger");
 const { defineSecret } = require("firebase-functions/params");
 const nodemailer = require("nodemailer");
 
@@ -17,6 +18,7 @@ exports.sendEmail = onRequest(
         pass: gmailPassword.value(),
       },
     });
+
     if (req.method !== "POST") {
       return res.status(405).send({ message: "Method not allowed" });
     }
@@ -34,13 +36,13 @@ exports.sendEmail = onRequest(
       text: message,
     };
 
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error("Error sending email:", error);
-        return res.status(500).send({ error: error.toString() });
-      }
-
-      console.log("Email sent:", info.response);
+    try {
+      const info = await transporter.sendMail(mailOptions);
+      logger.info("Email sent:", info.response);
       return res.status(200).send({ message: "Email sent successfully!" });
-    });
-  });
+    } catch (error) {
+      logger.error("Error sending email:", error);
+      return res.status(500).send({ error: error.toString() });
+    }
+  },
+);
