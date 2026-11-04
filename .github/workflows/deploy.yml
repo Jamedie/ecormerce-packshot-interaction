@@ -1,0 +1,62 @@
+name: Deploy to Firebase
+
+# Builds the Svelte site and deploys Hosting + Cloud Functions together,
+# so the frontend and the sendEmail function never get out of sync.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Never run two deploys at once; a newer push waits for the current one.
+concurrency:
+  group: firebase-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      # Read by .npmrc for the private wonder-model-viewer package.
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            functions/package-lock.json
+
+      - name: Install frontend dependencies
+        run: npm ci
+
+      - name: Install functions dependencies
+        working-directory: functions
+        run: npm ci
+
+      - name: Lint functions
+        working-directory: functions
+        run: npx eslint .
+
+      - name: Build site
+        run: npm run build
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+
+      # Scoped to this site and this function: jimmy-webar hosts other
+      # projects, and no --force so nothing outside this repo gets deleted.
+      - name: Deploy Hosting and Functions
+        run: >-
+          npx --yes firebase-tools@15.34.0 deploy
+          --only hosting:innovaition-outdoor,functions:sendEmail
+          --project jimmy-webar
+          --non-interactive
