@@ -17,25 +17,9 @@
     });
   });
 
-  async function handleAddToCart() {
-    const response = await fetch("/sendEmail", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        to: "test@example.com",
-        subject: "Test Email",
-        message: "This is a test email!",
-      }),
-    });
-
-    const result = await response.json();
-    if (response.ok) {
-      console.log("Succès :", result.message);
-    } else {
-      console.error("Erreur :", result.error, result.message);
-    }
+  function handleAddToCart() {
+    // TODO: real cart logic (this used to send a test email to test@example.com).
+    console.log("Add to cart:", { selectedColor, selectedMaterial });
   }
 </script>
 
